@@ -9,13 +9,32 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var session: SessionStore
+    
+    func getUser () {
+        session.listen()
+    }
+    
     var body: some View {
-        Text("Hello, World!")
+        Group {
+            if (session.session != nil) {
+            FirebaseImage(id: "6HziDgpHnPe8eUfQMRPNJvc2s0i1")
+                Button(action: session.signOut){
+                    Text("Sign out")
+                }
+            
+          } else {
+            SignInView()
+          }
+        }.onAppear(perform: getUser)
     }
 }
 
+#if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+        .environmentObject(SessionStore())
     }
 }
+#endif
