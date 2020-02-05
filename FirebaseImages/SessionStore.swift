@@ -12,19 +12,25 @@ import Combine
 
 class SessionStore: ObservableObject {
     @Published var session: User?
+    @Published var items: [SavedPlace] = []
+    @Published var userId: String = ""
     var handle: AuthStateDidChangeListenerHandle?
+    var ref: DatabaseReference!
+    
     
     func listen () {
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
                 // if we have a user, create a new user model
-                print("Got user: \(user)")
+                print("Got user: \(user.uid)")
+                self.ref = Database.database().reference().child("users").child(user.uid)
                 self.session = User(
                     uid: user.uid,
                     displayName: user.displayName,
                     email: user.email
                 )
+                self.getPlaces()
             } else {
                 // if we don't have a user, set our session to nil
                 self.session = nil
@@ -64,6 +70,17 @@ class SessionStore: ObservableObject {
         }
     }
     
+    func getPlaces(){
+        ref.observe(DataEventType.value){ (snapshot) in
+            self.items = []
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                let savedPlace = SavedPlace(snapshot: snapshot){
+                    self.items.append(savedPlace)
+                }
+            }
+        }
+    }
 }
 
 class User {

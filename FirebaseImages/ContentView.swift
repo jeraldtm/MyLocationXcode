@@ -18,7 +18,14 @@ struct ContentView: View {
     var body: some View {
         Group {
             if (session.session != nil) {
-            FirebaseImage(id: "6HziDgpHnPe8eUfQMRPNJvc2s0i1")
+//            FirebaseImage(id: "6HziDgpHnPe8eUfQMRPNJvc2s0i1")
+                
+                List {
+                    ForEach(self.session.items){ savedPlace in
+                        Text(savedPlace.placeName)
+                    }
+                }
+                
                 Button(action: session.signOut){
                     Text("Sign out")
                 }

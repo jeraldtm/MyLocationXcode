@@ -8,7 +8,7 @@
 
 import SwiftUI
 import Combine
-import FirebaseStorage
+import Firebase
 let placeholder = UIImage(systemName: "star")
 
 struct FirebaseImage : View {

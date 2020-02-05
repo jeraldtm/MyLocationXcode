@@ -7,7 +7,9 @@
 //
 
 import XCTest
-@testable import FirebaseImages
+@testable import FirebaseStorage
+@testable import FirebaseDatabase
+@testable import Firebase
 
 class FirebaseImagesTests: XCTestCase {
 
