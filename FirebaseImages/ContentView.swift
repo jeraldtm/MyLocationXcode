@@ -16,24 +16,51 @@ struct ContentView: View {
     }
     
     var body: some View {
-        Group {
+        NavigationView {
             if (session.session != nil) {
-//            FirebaseImage(id: "6HziDgpHnPe8eUfQMRPNJvc2s0i1")
-                
                 List {
-                    ForEach(self.session.items){ savedPlace in
-                        Text(savedPlace.placeName)
+                    Section{
+                        ForEach(self.session.items){ savedPlace in
+                            PlaceCell(savedPlace: savedPlace)
+                                .environmentObject(self.session)
+                        }
+                    }
+                    
+                    Section{
+                        Button(action: session.signOut){
+                            Text("Sign out")
+                            }
                     }
                 }
+                .navigationBarTitle(Text("Places"))
+                .listStyle(GroupedListStyle())
                 
-                Button(action: session.signOut){
-                    Text("Sign out")
-                }
+               
             
           } else {
             SignInView()
           }
+            
         }.onAppear(perform: getUser)
+        
+    }
+}
+
+struct PlaceCell: View {
+    @EnvironmentObject var session: SessionStore
+    let savedPlace: SavedPlace
+    
+    var body: some View {
+        NavigationLink(destination: SavedPlaceView(savedPlace: savedPlace)
+            .environmentObject(session)
+        ){
+            VStack(alignment: .leading) {
+                Text(savedPlace.placeName)
+                Text(savedPlace.comments)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+        }
     }
 }
 
