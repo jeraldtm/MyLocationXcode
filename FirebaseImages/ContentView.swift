@@ -34,9 +34,6 @@ struct ContentView: View {
                 }
                 .navigationBarTitle(Text("Places"))
                 .listStyle(GroupedListStyle())
-                
-               
-            
           } else {
             SignInView()
           }

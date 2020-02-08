@@ -30,6 +30,7 @@ class SessionStore: ObservableObject {
                     displayName: user.displayName,
                     email: user.email
                 )
+                self.userId = user.uid
                 self.getPlaces()
             } else {
                 // if we don't have a user, set our session to nil
