@@ -17,7 +17,7 @@ extension StoreView {
        
     func saveLocation(){
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy:MM:dd hh:mm:ss:SS xxxxx"
+        formatter.dateFormat = "yyyy:MM:dd HH:mm:ss:SS xxxxx"
         let time = formatter.string(from: Date())
         
         let locationToSave : [String: String] = [
