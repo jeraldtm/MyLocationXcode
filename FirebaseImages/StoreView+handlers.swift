@@ -19,10 +19,11 @@ extension StoreView {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy:MM:dd hh:mm:ss:SS xxxxx"
         let time = formatter.string(from: Date())
+        
         let locationToSave : [String: String] = [
             "locationName": placeName,
             "comments": comments,
-            "containsPhoto": "False",
+            "containsPhoto": "True",
             "latitude": userLatitude,
             "longitude": userLongitude,
             "time": time,
