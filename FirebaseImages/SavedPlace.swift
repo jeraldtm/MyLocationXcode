@@ -19,15 +19,17 @@ struct SavedPlace: Identifiable {
     let comments: String
     let latitude: String
     let longitude: String
+    let timeStamp: String
     
-    init(placeName: String = "", comments: String = "", latitude: String = "", longitude: String = "", key: String = "", id: String = ""){
+    init(placeName: String = "", comments: String = "", latitude: String = "", longitude: String = "", key: String = "", id: String = "", timeStamp: String = ""){
         self.ref = nil
         self.key = key
         self.id = key
-        self.placeName = ""
+        self.placeName = placeName
         self.comments = ""
         self.latitude = ""
         self.longitude = ""
+        self.timeStamp = ""
     }
     
     init?(snapshot: DataSnapshot){
@@ -66,6 +68,7 @@ struct SavedPlace: Identifiable {
         self.comments = comments
         self.latitude = latitude
         self.longitude = longitude
+        self.timeStamp = id
     }
     
     func toAnyObject() -> Any {

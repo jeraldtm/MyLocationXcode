@@ -32,7 +32,7 @@ struct SavedPlaceView: View {
 
 struct SavedPlaceView_Previews: PreviewProvider {
     static var previews: some View {
-        SavedPlaceView(savedPlace: SavedPlace(placeName: "test", comments: "test", latitude: "34.011286", longitude: "-116.166868", key: "test", id: "iV8JtXFfsBbQKYqNYPDARW8akE53"))
+        SavedPlaceView(savedPlace: SavedPlace())
             .environmentObject(SessionStore())
     }
 }

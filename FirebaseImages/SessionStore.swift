@@ -16,6 +16,7 @@ class SessionStore: ObservableObject {
     @Published var userId: String = ""
     var handle: AuthStateDidChangeListenerHandle?
     var ref: DatabaseReference!
+    var storageRef: StorageReference!
     
     
     func listen () {
@@ -25,6 +26,7 @@ class SessionStore: ObservableObject {
                 // if we have a user, create a new user model
                 print("Got user: \(user.uid)")
                 self.ref = Database.database().reference().child("users").child(user.uid)
+                self.storageRef = Storage.storage().reference().child("users").child(user.uid)
                 self.session = User(
                     uid: user.uid,
                     displayName: user.displayName,
