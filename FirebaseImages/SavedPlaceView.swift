@@ -17,7 +17,6 @@ struct SavedPlaceView: View {
                 MapView(latitude: savedPlace.latitude, longitude: savedPlace.longitude)
                     .frame(height: 200)
                 FirebaseImage(id: session.userId + "/" + savedPlace.id)
-                .cornerRadius(10)
                 HStack {
                     Text("Name: ")
                     Text(savedPlace.placeName)

@@ -27,8 +27,7 @@ struct FirebaseImage : View {
         Image(uiImage: image ?? placeholder!)
             .resizable()
             .scaledToFit()
-//            .frame(width: 200.0, height: 200.0, alignment: .leading)
-
+            .cornerRadius(10)
     }
 }
 

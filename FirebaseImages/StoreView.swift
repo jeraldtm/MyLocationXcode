@@ -32,25 +32,31 @@ struct StoreView: View {
                 VStack {
                     MapView(latitude: userLatitude, longitude: userLongitude)
                     
-                    image?.resizable()
-                        .frame(width: 100.0, height: 100.0)
+                    image?
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(10.0)
                     
                     Form {
                         TextField("Place Name", text: $placeName)
                         TextField("Comments", text: $comments)
                     }
-                    VStack {
+                    HStack {
                         Button(action: {
                           self.showCaptureImageView.toggle()
                         }) {
                           Text("Choose photos")
-                        }
+                        }.padding(10.0)
+                        
+                        Spacer()
+                        
                         Button(action: saveLocation) {
                             Text("Save")
-                        }
+                        }.padding(10.0)
                     }
                     if (showCaptureImageView) {
                         CaptureImageView(isShown: $showCaptureImageView, image: $image, uiImage: $uiImage)
+                            .frame(height: 300.0, alignment: .trailing)
                     }
                     
                 } .navigationBarTitle(Text("Save Location"))
