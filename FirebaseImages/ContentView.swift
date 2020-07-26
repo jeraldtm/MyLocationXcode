@@ -20,7 +20,7 @@ struct ContentView: View {
             if (session.session != nil) {
                 List {
                     Section{
-                        ForEach(self.session.items){ savedPlace in
+                        ForEach(self.session.items.reversed()){ savedPlace in
                             PlaceCell(savedPlace: savedPlace)
                                 .environmentObject(self.session)
                         }

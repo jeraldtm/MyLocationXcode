@@ -15,6 +15,7 @@ target 'FirebaseImages' do
 	pod 'Firebase/Auth'
 	pod 'Firebase/Database'
 	pod 'Firebase/Storage'
+  pod 'GooglePlaces'
 
   target 'FirebaseImagesTests' do
     inherit! :search_paths

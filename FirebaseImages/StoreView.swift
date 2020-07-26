@@ -8,6 +8,7 @@
 
 import SwiftUI
 import CoreLocation
+import GooglePlaces
 
 struct StoreView: View {
     @EnvironmentObject var session: SessionStore
@@ -47,6 +48,18 @@ struct StoreView: View {
                         }) {
                           Text("Choose photos")
                         }.padding(10.0)
+                        
+                        Spacer()
+                        
+                        Button(action: getCurrentPlace) {
+                            Text("Get Place")
+                        }.padding(10.0)
+                        
+                        Spacer()
+                        
+                        NavigationLink(destination: ListNearbyView()){
+                            Text("List Nearby")
+                        }
                         
                         Spacer()
                         
