@@ -43,23 +43,18 @@ struct StoreView: View {
                         TextField("Comments", text: $comments)
                     }
                     HStack {
+                        
+                        NavigationLink(destination: ListNearbyView()){
+                            Text("List Nearby")
+                        }
+                        
+                        Spacer()
+                        
                         Button(action: {
                           self.showCaptureImageView.toggle()
                         }) {
                           Text("Choose photos")
                         }.padding(10.0)
-                        
-                        Spacer()
-                        
-                        Button(action: getCurrentPlace) {
-                            Text("Get Place")
-                        }.padding(10.0)
-                        
-                        Spacer()
-                        
-                        NavigationLink(destination: ListNearbyView()){
-                            Text("List Nearby")
-                        }
                         
                         Spacer()
                         

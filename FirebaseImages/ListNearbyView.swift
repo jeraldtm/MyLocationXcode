@@ -68,8 +68,7 @@ struct NearbyPlaceCell: View {
 #if DEBUG
 struct ListNearbyView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-        .environmentObject(SessionStore())
+        ListNearbyView(likelyPlaces:[NearbyPlace(name:"test")])
     }
 }
 #endif
