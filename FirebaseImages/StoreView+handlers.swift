@@ -21,7 +21,7 @@ extension StoreView {
         let time = formatter.string(from: Date())
         
         let locationToSave : [String: String] = [
-            "locationName": placeName,
+            "locationName": self.session.selectedPlace,
             "comments": comments,
             "containsPhoto": "True",
             "latitude": userLatitude,

@@ -39,7 +39,7 @@ struct StoreView: View {
                         .cornerRadius(10.0)
                     
                     Form {
-                        TextField("Place Name", text: $placeName)
+                        Text(self.session.selectedPlace)
                         TextField("Comments", text: $comments)
                     }
                     HStack {
@@ -67,7 +67,7 @@ struct StoreView: View {
                             .frame(height: 300.0, alignment: .trailing)
                     }
                     
-                } .navigationBarTitle(Text("Save Location"))
+                } .navigationBarTitle(Text("Save Location"), displayMode: .inline)
             } else {
                 SignInView()
             }

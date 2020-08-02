@@ -14,6 +14,7 @@ class SessionStore: ObservableObject {
     @Published var session: User?
     @Published var items: [SavedPlace] = []
     @Published var userId: String = ""
+    @Published var selectedPlace: String = ""
     var handle: AuthStateDidChangeListenerHandle?
     var ref: DatabaseReference!
     var storageRef: StorageReference!

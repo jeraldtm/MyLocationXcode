@@ -10,6 +10,8 @@ import SwiftUI
 import GooglePlaces
 
 struct ListNearbyView: View {
+    @EnvironmentObject var session: SessionStore
+    @Environment(\.presentationMode) var presentationMode:Binding<PresentationMode>
     @State var likelyPlaces: [NearbyPlace] = []
 
     func listLikelyPlaces(){
@@ -37,9 +39,15 @@ struct ListNearbyView: View {
     var body: some View {
         VStack{
             List(likelyPlaces) { nearbyplace in
-                NavigationLink(destination: StoreView(placeName: nearbyplace.name)){
-                    Text(nearbyplace.name)
-                }
+                    HStack{
+                        Button(action:{
+                            self.session.selectedPlace = nearbyplace.name
+                            self.presentationMode.wrappedValue.dismiss()
+                        }){
+                            Text(nearbyplace.name)
+                        }.buttonStyle(PlainButtonStyle())
+                    }
+                
             }
             .navigationBarTitle(Text("Nearby Places"))
             .listStyle(GroupedListStyle())
