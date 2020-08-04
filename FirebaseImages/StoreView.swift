@@ -13,7 +13,6 @@ import GooglePlaces
 struct StoreView: View {
     @EnvironmentObject var session: SessionStore
     @State var comments: String = ""
-    @State var placeName: String = ""
     @ObservedObject var locationManager = LocationManager()
     @State var image: Image? = nil
     @State var uiImage: UIImage? = nil

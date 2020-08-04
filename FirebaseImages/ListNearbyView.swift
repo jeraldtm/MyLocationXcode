@@ -64,7 +64,7 @@ struct NearbyPlaceCell: View {
     let nearbyPlaceName: String
     
     var body: some View {
-        NavigationLink(destination: StoreView(placeName: "test")
+        NavigationLink(destination: StoreView()
         ){
             VStack(alignment: .leading) {
                 Text(nearbyPlaceName)

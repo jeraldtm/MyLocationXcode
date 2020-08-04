@@ -13,6 +13,10 @@ import GooglePlaces
 extension StoreView {
     func getUser () {
         session.listen()
+        self.showCaptureImageView = false
+        self.comments = ""
+        self.session.selectedPlace = ""
+        self.image = nil
     }
        
     func saveLocation(){
@@ -76,7 +80,7 @@ extension StoreView {
             }
 
             if let placeLikelihoodList = placeLikelihoodList {
-                self.placeName = (placeLikelihoodList.first?.place.name!) ?? "nil"
+                self.session.selectedPlace = (placeLikelihoodList.first?.place.name!) ?? "nil"
               for likelihood in placeLikelihoodList {
                 let place = likelihood.place
                 print("Current Place name \(String(describing: place.name)) at likelihood \(likelihood.likelihood)")
