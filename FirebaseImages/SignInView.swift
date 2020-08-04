@@ -36,7 +36,7 @@ struct SignInView : View {
             TextField("Email Address", text: $email)
             TextField("Password", text: $password)
             if (error) {
-                Text("ahhh crap")
+                Text("password incorrect or no network connection")
             }
             Button(action: signIn) {
                 Text("Sign in")

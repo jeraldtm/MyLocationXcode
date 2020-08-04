@@ -32,13 +32,15 @@ extension StoreView {
             "photoPath": ""
         ]
         session.ref.child(time).setValue(locationToSave)
-        uploadImage(self.uiImage!, at: self.session.storageRef.child(time)) { (downloadURL) in
-            guard let downloadURL = downloadURL else {
-                return
-            }
+        if self.uiImage != nil{
+            uploadImage(self.uiImage!, at: self.session.storageRef.child(time)) { (downloadURL) in
+                guard let downloadURL = downloadURL else {
+                    return
+                }
 
-            let urlString = downloadURL.absoluteString
-            print("image url: \(urlString)")
+                let urlString = downloadURL.absoluteString
+                print("image url: \(urlString)")
+            }
         }
     }
     

@@ -65,7 +65,7 @@
 		7444439223F0179C005A8073 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7444439A23F032CC005A8073 /* StoreView+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreView+handlers.swift"; sourceTree = "<group>"; };
 		7444439E23F036B7005A8073 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		7464CC3823E828F2001A6C72 /* MyLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7464CC3823E828F2001A6C72 /* That-Place.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "That-Place.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7464CC3B23E828F2001A6C72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7464CC3D23E828F2001A6C72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7464CC3F23E828F2001A6C72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 		7464CC3923E828F2001A6C72 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7464CC3823E828F2001A6C72 /* MyLocation.app */,
+				7464CC3823E828F2001A6C72 /* That-Place.app */,
 				7464CC4E23E828F4001A6C72 /* FirebaseImagesTests.xctest */,
 				7464CC5923E828F4001A6C72 /* FirebaseImagesUITests.xctest */,
 			);
@@ -234,7 +234,7 @@
 			);
 			name = FirebaseImages;
 			productName = FirebaseImages;
-			productReference = 7464CC3823E828F2001A6C72 /* MyLocation.app */;
+			productReference = 7464CC3823E828F2001A6C72 /* That-Place.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7464CC4D23E828F4001A6C72 /* FirebaseImagesTests */ = {
@@ -645,10 +645,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thow.FirebaseImages;
-				PRODUCT_NAME = MyLocation;
+				PRODUCT_NAME = "That-Place";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -667,10 +668,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thow.FirebaseImages;
-				PRODUCT_NAME = MyLocation;
+				PRODUCT_NAME = "That-Place";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

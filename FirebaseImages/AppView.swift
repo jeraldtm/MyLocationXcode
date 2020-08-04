@@ -9,6 +9,12 @@
 import SwiftUI
 
 struct AppView: View {
+    @EnvironmentObject var session: SessionStore
+    
+    func getUser () {
+        session.listen()
+    }
+    
     var body: some View {
         TabView{
             ContentView()
@@ -16,7 +22,7 @@ struct AppView: View {
                     Image(systemName: "list.dash")
                     Text("List")
             }
-        
+            
             StoreView()
                 .tabItem{
                     Image(systemName: "star")
