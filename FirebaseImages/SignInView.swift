@@ -32,14 +32,32 @@ struct SignInView : View {
     }
 
     var body: some View {
-        VStack {
-            TextField("Email Address", text: $email)
-            TextField("Password", text: $password)
-            if (error) {
-                Text("password incorrect or no network connection")
-            }
-            Button(action: signIn) {
-                Text("Sign in")
+        NavigationView{
+            if (session.session != nil) {
+                VStack{
+                    Spacer()
+                    Text("User Id: " + session.userId)
+                    Spacer()
+                    Button(action: session.signOut){
+                        Text("Sign out")
+                    }
+                    Spacer()
+                }
+            } else {
+                VStack {
+                    Text("Sign in to sync across devices, store images and much more!")
+                        .font(.largeTitle)
+                        .lineLimit(nil)
+                        .multilineTextAlignment(.center)
+                    TextField("Email Address", text: $email)
+                    SecureField("Password", text: $password)
+                    if (error) {
+                        Text("password incorrect or no network connection")
+                    }
+                    Button(action: signIn) {
+                        Text("Sign in")
+                    }
+                }
             }
         }
     }

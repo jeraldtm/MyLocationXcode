@@ -23,11 +23,16 @@ extension StoreView {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy:MM:dd HH:mm:ss:SS xxxxx"
         let time = formatter.string(from: Date())
+        var containsPhoto = "False"
+        
+        if showCaptureImageView{
+            containsPhoto = "True"
+        }
         
         let locationToSave : [String: String] = [
             "locationName": self.session.selectedPlace,
             "comments": comments,
-            "containsPhoto": "True",
+            "containsPhoto": containsPhoto,
             "latitude": userLatitude,
             "longitude": userLongitude,
             "time": time,
@@ -35,16 +40,21 @@ extension StoreView {
             "userName": "",
             "photoPath": ""
         ]
-        session.ref.child(time).setValue(locationToSave)
-        if self.uiImage != nil{
-            uploadImage(self.uiImage!, at: self.session.storageRef.child(time)) { (downloadURL) in
-                guard let downloadURL = downloadURL else {
-                    return
-                }
+        
+        if (session.session != nil) {
+            session.ref.child(time).setValue(locationToSave)
+            if self.uiImage != nil{
+                uploadImage(self.uiImage!, at: self.session.storageRef.child(time)) { (downloadURL) in
+                    guard let downloadURL = downloadURL else {
+                        return
+                    }
 
-                let urlString = downloadURL.absoluteString
-                print("image url: \(urlString)")
+                    let urlString = downloadURL.absoluteString
+                    print("image url: \(urlString)")
+                }
             }
+        } else {
+            print("save locally")
         }
     }
     

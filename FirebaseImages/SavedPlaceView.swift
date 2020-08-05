@@ -16,7 +16,11 @@ struct SavedPlaceView: View {
             VStack {
                 MapView(latitude: savedPlace.latitude, longitude: savedPlace.longitude)
                     .frame(height: 200)
-                FirebaseImage(id: session.userId + "/" + savedPlace.id)
+                
+                if (savedPlace.containsPhoto == "True"){
+                    FirebaseImage(id: session.userId + "/" + savedPlace.id)
+                }
+                
                 HStack {
                     Text("Name: ")
                     Text(savedPlace.placeName)

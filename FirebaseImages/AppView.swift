@@ -17,18 +17,29 @@ struct AppView: View {
     
     var body: some View {
         TabView{
+          
             ContentView()
-                .tabItem{
-                    Image(systemName: "list.dash")
-                    Text("List")
+              .tabItem{
+                  Image(systemName: "list.dash")
+                  Text("List")
             }
+            
             
             StoreView()
                 .tabItem{
-                    Image(systemName: "star")
+                    Image(systemName: "location.circle")
                     Text("Save")
             }
-        }
+            
+
+            
+            SignInView()
+                .tabItem{
+                    Image(systemName: "person")
+                    Text("Account")
+            }
+            
+        }.onAppear(perform: getUser)
     }
 }
 

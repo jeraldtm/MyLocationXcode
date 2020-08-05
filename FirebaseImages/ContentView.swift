@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var session: SessionStore
+    var savedPlaces: [SavedPlace] = testDataPlace
+    
     
     func getUser () {
         session.listen()
@@ -36,7 +38,15 @@ struct ContentView: View {
                 .listStyle(GroupedListStyle())
 
           } else {
-            SignInView()
+                List{
+                    Section{
+                        ForEach(savedPlaces.reversed()){ savedPlace in
+                            TestPlaceCell(savedPlace: savedPlace)
+                        }
+                    }
+                }
+                .navigationBarTitle(Text("Places"))
+                .listStyle(GroupedListStyle())
           }
             
         }.onAppear(perform: getUser)
@@ -51,6 +61,21 @@ struct PlaceCell: View {
     var body: some View {
         NavigationLink(destination: SavedPlaceView(savedPlace: savedPlace)
             .environmentObject(session)
+        ){
+            VStack(alignment: .leading) {
+                Text(savedPlace.placeName)
+                Text(savedPlace.comments)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+        }
+    }
+}
+
+struct TestPlaceCell: View {
+    let savedPlace: SavedPlace
+    var body: some View {
+        NavigationLink(destination: SavedPlaceView(savedPlace: savedPlace)
         ){
             VStack(alignment: .leading) {
                 Text(savedPlace.placeName)

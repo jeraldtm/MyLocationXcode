@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 import Firebase
-let placeholder = UIImage(systemName: "star")
+let placeholder = UIImage(systemName: "questionmark.circle")
 
 struct FirebaseImage : View {
     @EnvironmentObject var session: SessionStore

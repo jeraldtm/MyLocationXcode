@@ -28,7 +28,6 @@ struct StoreView: View {
     
     var body: some View {
         NavigationView {
-            if (session.session != nil){
                 VStack {
                     MapView(latitude: userLatitude, longitude: userLongitude)
                     
@@ -42,24 +41,27 @@ struct StoreView: View {
                         TextField("Comments", text: $comments)
                     }
                     HStack {
-                        
+                        Spacer()
                         NavigationLink(destination: ListNearbyView()){
                             Text("List Nearby")
                         }
                         
-                        Spacer()
-                        
-                        Button(action: {
-                          self.showCaptureImageView.toggle()
-                        }) {
-                          Text("Choose photos")
-                        }.padding(10.0)
+                        if (session.session != nil) {
+                            Spacer()
+                            Button(action: {
+                              self.showCaptureImageView.toggle()
+                            }) {
+                              Text("Choose photos")
+                            }.padding(10.0)
+                        }
                         
                         Spacer()
                         
                         Button(action: saveLocation) {
                             Text("Save")
                         }.padding(10.0)
+                        
+                        Spacer()
                     }
                     if (showCaptureImageView) {
                         CaptureImageView(isShown: $showCaptureImageView, image: $image, uiImage: $uiImage)
@@ -67,9 +69,6 @@ struct StoreView: View {
                     }
                     
                 } .navigationBarTitle(Text("Save Location"), displayMode: .inline)
-            } else {
-                SignInView()
-            }
             
         }.onAppear(perform: getUser)
     }

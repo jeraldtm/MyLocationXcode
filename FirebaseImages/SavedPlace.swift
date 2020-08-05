@@ -20,16 +20,19 @@ struct SavedPlace: Identifiable {
     let latitude: String
     let longitude: String
     let timeStamp: String
+    let containsPhoto: String
     
-    init(placeName: String = "", comments: String = "", latitude: String = "", longitude: String = "", key: String = "", id: String = "", timeStamp: String = ""){
+    init(placeName: String = "", comments: String = "", latitude: String = "", longitude: String = "", key: String = "", id: String = "", timeStamp: String = "", containsPhoto: String = ""){
+        
         self.ref = nil
         self.key = key
         self.id = key
         self.placeName = placeName
-        self.comments = ""
-        self.latitude = ""
-        self.longitude = ""
-        self.timeStamp = ""
+        self.comments = comments
+        self.latitude = latitude
+        self.longitude = longitude
+        self.timeStamp = timeStamp
+        self.containsPhoto = containsPhoto
     }
     
     init?(snapshot: DataSnapshot){
@@ -60,6 +63,11 @@ struct SavedPlace: Identifiable {
             return nil
         }
         
+        guard let containsPhoto = value["containsPhoto"] as? String
+        else{
+            return nil
+        }
+        
         self.ref = snapshot.ref
         self.key = snapshot.key
         
@@ -69,6 +77,7 @@ struct SavedPlace: Identifiable {
         self.latitude = latitude
         self.longitude = longitude
         self.timeStamp = id
+        self.containsPhoto = containsPhoto
     }
     
     func toAnyObject() -> Any {
@@ -79,7 +88,7 @@ struct SavedPlace: Identifiable {
 }
 
 #if DEBUG
-let testData = [
-    SavedPlace(placeName: "Lake Street", comments: "Testing Code", latitude: "34.011286", longitude: "-116.166868", key: "key", id: "")
+let testDataPlace = [
+    SavedPlace(placeName: "T-Mobile", comments: "Buying Iphone", latitude: "37.785834", longitude: "-122.406417", key: "key", id: "", containsPhoto: "False")
 ]
 #endif
