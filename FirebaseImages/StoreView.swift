@@ -19,7 +19,6 @@ struct StoreView: View {
     @State var image: Image? = nil
     @State var uiImage: UIImage? = nil
     @State var showCaptureImageView: Bool = false
-    @State var containsPhoto: String = "False"
     
     var userLatitude: String {
         return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
@@ -56,8 +55,7 @@ struct StoreView: View {
                         if (session.session != nil) {
                             Spacer()
                             Button(action: {
-                                self.showCaptureImageView.toggle();
-                                self.containsPhoto = "True";
+                              self.showCaptureImageView.toggle()
                             }) {
                               Text("Choose photos")
                             }.padding(10.0)

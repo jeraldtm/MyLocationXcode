@@ -17,7 +17,11 @@ struct SavedPlaceView: View {
                 MapView(latitude: savedPlace.latitude, longitude: savedPlace.longitude)
                     .frame(height: 200)
                 
-                if (savedPlace.containsPhoto == "True"){
+                if (savedPlace.containsPhoto == "True") {
+                    FirebaseImage(id: session.userId + "/" + savedPlace.id)
+                }
+                
+                if (savedPlace.containsPhoto == "true") {
                     FirebaseImage(id: session.userId + "/" + savedPlace.id)
                 }
                 

@@ -25,7 +25,7 @@ extension StoreView {
         formatter.dateFormat = "yyyy:MM:dd HH:mm:ss:SS xxxxx"
         let time = formatter.string(from: Date())
         
-        print(containsPhoto)
+        print(String(image != nil).capitalized)
         
         if (self.session.selectedPlace == ""){
             self.session.selectedPlace = placename
@@ -34,7 +34,7 @@ extension StoreView {
         let locationToSave : [String: String] = [
             "locationName": self.session.selectedPlace,
             "comments": comments,
-            "containsPhoto": containsPhoto,
+            "containsPhoto": String(image != nil).capitalized,
             "latitude": userLatitude,
             "longitude": userLongitude,
             "time": time,
@@ -58,7 +58,7 @@ extension StoreView {
         } else {
             print("save locally")
             localStore.currentIndex = localStore.currentIndex + 1
-            localStore.addPlace(SavedPlace(placeName: self.session.selectedPlace, comments: comments, latitude: userLatitude, longitude: userLongitude, key: String(localStore.currentIndex), id: session.userId, timeStamp: time, containsPhoto: containsPhoto))
+            localStore.addPlace(SavedPlace(placeName: self.session.selectedPlace, comments: comments, latitude: userLatitude, longitude: userLongitude, key: String(localStore.currentIndex), id: session.userId, timeStamp: time, containsPhoto: "False"))
         }
     }
     
