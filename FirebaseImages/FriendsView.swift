@@ -1,16 +1,15 @@
 //
-//  ContentView.swift
+//  FriendsView.swift
 //  FirebaseImages
 //
-//  Created by Thow Min Cham on 2/3/20.
+//  Created by Thow on 8/6/20.
 //  Copyright © 2020 Thow Min Cham. All rights reserved.
 //
 
 import SwiftUI
 
-struct ContentView: View {
+struct FriendsView: View {
     @EnvironmentObject var session: SessionStore
-    @EnvironmentObject var localStore: LocalStore
     func getUser () {
         session.listen()
     }
@@ -20,8 +19,8 @@ struct ContentView: View {
             if (session.session != nil) {
                 List {
                     Section{
-                        ForEach(self.session.items.reversed()){ savedPlace in
-                            PlaceCell(savedPlace: savedPlace)
+                        ForEach(self.session.friends){ friend in
+                            FriendCell(friend: friend)
                                 .environmentObject(self.session)
                         }
                     }
@@ -32,44 +31,39 @@ struct ContentView: View {
                             }
                     }
                 }
-                .navigationBarTitle(Text("Places"))
+                .navigationBarTitle(Text("Friends"))
                 .listStyle(GroupedListStyle())
 
           } else {
-                List{
-                    ForEach(self.localStore.items){ savedPlace in
-                        PlaceCell(savedPlace: savedPlace)
-                    }
-                }
-                .navigationBarTitle(Text("Places"))
-                .listStyle(GroupedListStyle())
+                Text("Sign in to share places with friends!")
+                .font(.headline)
+                .lineLimit(nil)
+                .multilineTextAlignment(.center)
           }
         }.onAppear(perform: getUser)
     }
 }
 
-struct PlaceCell: View {
+struct FriendCell: View {
     @EnvironmentObject var session: SessionStore
-    let savedPlace: SavedPlace
+    let friend: Friend
     var body: some View {
-        NavigationLink(destination: SavedPlaceView(savedPlace: savedPlace, type: "")
+        NavigationLink(destination: FriendContentView(selectedFriend: friend)
             .environmentObject(session)
         ){
             VStack(alignment: .leading) {
-                Text(savedPlace.placeName)
-                Text(savedPlace.comments)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
+                Text(friend.favName)
             }
         }
     }
 }
 
 #if DEBUG
-struct ContentView_Previews: PreviewProvider {
+struct FriendsView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        FriendsView()
         .environmentObject(SessionStore())
     }
 }
 #endif
+

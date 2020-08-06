@@ -36,6 +36,7 @@ struct SignInView : View {
             if (session.session != nil) {
                 VStack{
                     Spacer()
+                    Text("Username: " + session.userName)
                     Text("User Id: " + session.userId)
                     Spacer()
                     Button(action: session.signOut){

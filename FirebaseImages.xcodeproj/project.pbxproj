@@ -31,6 +31,9 @@
 		776A3169B954D38FCD3DE2F2 /* libPods-FirebaseImagesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 893490444679A7215F9B090A /* libPods-FirebaseImagesTests.a */; };
 		C0BF4C5A24CE265E00855188 /* ListNearbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF4C5924CE265E00855188 /* ListNearbyView.swift */; };
 		C0BF609724DAD6D1002AE7A9 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF609624DAD6D1002AE7A9 /* LocalStore.swift */; };
+		C0BF609A24DC2D25002AE7A9 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF609924DC2D25002AE7A9 /* Friend.swift */; };
+		C0BF609C24DC3021002AE7A9 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF609B24DC3021002AE7A9 /* FriendsView.swift */; };
+		C0BF609E24DC350D002AE7A9 /* FriendContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF609D24DC350D002AE7A9 /* FriendContentView.swift */; };
 		E348114D56B629E3B6F3B9F8 /* libPods-FirebaseImages-FirebaseImagesUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 616E8224411475F121506FD6 /* libPods-FirebaseImages-FirebaseImagesUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +92,10 @@
 		9BE37F63A8A7975025CFAED6 /* Pods-FirebaseImagesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseImagesTests.release.xcconfig"; path = "Target Support Files/Pods-FirebaseImagesTests/Pods-FirebaseImagesTests.release.xcconfig"; sourceTree = "<group>"; };
 		C0BF4C5924CE265E00855188 /* ListNearbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNearbyView.swift; sourceTree = "<group>"; };
 		C0BF609624DAD6D1002AE7A9 /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
+		C0BF609824DC1B83002AE7A9 /* That-Place.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "That-Place.entitlements"; sourceTree = "<group>"; };
+		C0BF609924DC2D25002AE7A9 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		C0BF609B24DC3021002AE7A9 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
+		C0BF609D24DC350D002AE7A9 /* FriendContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,22 +174,26 @@
 		7464CC3A23E828F2001A6C72 /* FirebaseImages */ = {
 			isa = PBXGroup;
 			children = (
+				C0BF609824DC1B83002AE7A9 /* That-Place.entitlements */,
+				7437D53923EF7BB300ACCF92 /* AppView.swift */,
 				7464CC3B23E828F2001A6C72 /* AppDelegate.swift */,
+				7464CC3D23E828F2001A6C72 /* SceneDelegate.swift */,
+				7444439E23F036B7005A8073 /* Coordinator.swift */,
+				7444439223F0179C005A8073 /* LocationManager.swift */,
+				7444224A23EA56F500EE65B9 /* FirebaseImage.swift */,
 				743C596923EB9C3D0073D9A5 /* SavedPlaceView.swift */,
 				C0BF4C5924CE265E00855188 /* ListNearbyView.swift */,
-				7437D53923EF7BB300ACCF92 /* AppView.swift */,
 				7437D53B23EF7CB100ACCF92 /* StoreView.swift */,
-				7444439E23F036B7005A8073 /* Coordinator.swift */,
 				7444439A23F032CC005A8073 /* StoreView+handlers.swift */,
-				7444439223F0179C005A8073 /* LocationManager.swift */,
 				743C596B23EBABD50073D9A5 /* MapView.swift */,
 				74989FB323EAD4550067E60C /* SavedPlace.swift */,
-				7444224A23EA56F500EE65B9 /* FirebaseImage.swift */,
-				7464CC3D23E828F2001A6C72 /* SceneDelegate.swift */,
-				7464CC7523E83F0A001A6C72 /* SignInView.swift */,
+				C0BF609924DC2D25002AE7A9 /* Friend.swift */,
+				C0BF609B24DC3021002AE7A9 /* FriendsView.swift */,
+				C0BF609D24DC350D002AE7A9 /* FriendContentView.swift */,
 				7464CC3F23E828F2001A6C72 /* ContentView.swift */,
 				7464CC7123E83B2B001A6C72 /* SessionStore.swift */,
 				C0BF609624DAD6D1002AE7A9 /* LocalStore.swift */,
+				7464CC7523E83F0A001A6C72 /* SignInView.swift */,
 				7464CC4123E828F4001A6C72 /* Assets.xcassets */,
 				7464CC4623E828F4001A6C72 /* LaunchScreen.storyboard */,
 				7464CC4923E828F4001A6C72 /* Info.plist */,
@@ -466,12 +477,15 @@
 				743C596A23EB9C3D0073D9A5 /* SavedPlaceView.swift in Sources */,
 				7444224B23EA56F500EE65B9 /* FirebaseImage.swift in Sources */,
 				C0BF4C5A24CE265E00855188 /* ListNearbyView.swift in Sources */,
+				C0BF609E24DC350D002AE7A9 /* FriendContentView.swift in Sources */,
 				74989FB423EAD4550067E60C /* SavedPlace.swift in Sources */,
 				7464CC7223E83B2B001A6C72 /* SessionStore.swift in Sources */,
 				7464CC3E23E828F2001A6C72 /* SceneDelegate.swift in Sources */,
 				7444439B23F032CC005A8073 /* StoreView+handlers.swift in Sources */,
+				C0BF609C24DC3021002AE7A9 /* FriendsView.swift in Sources */,
 				7444439323F0179C005A8073 /* LocationManager.swift in Sources */,
 				743C596C23EBABD50073D9A5 /* MapView.swift in Sources */,
+				C0BF609A24DC2D25002AE7A9 /* Friend.swift in Sources */,
 				7437D53A23EF7BB300ACCF92 /* AppView.swift in Sources */,
 				7464CC4023E828F2001A6C72 /* ContentView.swift in Sources */,
 			);
@@ -639,6 +653,7 @@
 			baseConfigurationReference = 404C490A9573B4758AB505FC /* Pods-FirebaseImages.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "FirebaseImages/That-Place.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"FirebaseImages/Preview Content\"";
@@ -653,8 +668,9 @@
 				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thow.FirebaseImages;
 				PRODUCT_NAME = "That-Place";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -663,6 +679,7 @@
 			baseConfigurationReference = 34C3C44D7C265917D7AAF2C8 /* Pods-FirebaseImages.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "FirebaseImages/That-Place.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"FirebaseImages/Preview Content\"";
@@ -677,8 +694,9 @@
 				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thow.FirebaseImages;
 				PRODUCT_NAME = "That-Place";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

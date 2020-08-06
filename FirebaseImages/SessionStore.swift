@@ -14,11 +14,20 @@ class SessionStore: ObservableObject {
     @Published var session: User?
     @Published var items: [SavedPlace] = []
     @Published var userId: String = ""
+    @Published var userName: String = ""
     @Published var selectedPlace: String = ""
+    
+    @Published var friendItems: [SavedPlace] = []
+    @Published var friends: [Friend] = []
+    @Published var selectedFriend: Friend = Friend()
+    
     var handle: AuthStateDidChangeListenerHandle?
     var ref: DatabaseReference!
+    var nameref: DatabaseReference!
     var storageRef: StorageReference!
     
+    var friendsRef: DatabaseReference!
+    var friendPlacesRef: DatabaseReference!
     
     func listen () {
         // monitor authentication changes using firebase
@@ -27,7 +36,10 @@ class SessionStore: ObservableObject {
                 // if we have a user, create a new user model
                 print("Got user: \(user.uid)")
                 self.ref = Database.database().reference().child("users").child(user.uid)
+                self.nameref = Database.database().reference().child("names")
                 self.storageRef = Storage.storage().reference().child("users").child(user.uid)
+                self.friendsRef = Database.database().reference().child("favourites").child(user.uid)
+                
                 self.session = User(
                     uid: user.uid,
                     displayName: user.displayName,
@@ -35,6 +47,9 @@ class SessionStore: ObservableObject {
                 )
                 self.userId = user.uid
                 self.getPlaces()
+                self.getName()
+                self.getFriends()
+                
             } else {
                 // if we don't have a user, set our session to nil
                 self.session = nil
@@ -81,6 +96,42 @@ class SessionStore: ObservableObject {
                 if let snapshot = child as? DataSnapshot,
                 let savedPlace = SavedPlace(snapshot: snapshot){
                     self.items.append(savedPlace)
+                }
+            }
+        }
+    }
+    
+    func getName(){
+        let userID = Auth.auth().currentUser?.uid
+        nameref.child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            self.userName = snapshot.value as? String ?? ""
+            print("Username: " + self.userName)
+          }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    func getFriends(){
+        friendsRef.observe(DataEventType.value){ (snapshot) in
+            self.friends = []
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                let friend = Friend(snapshot: snapshot){
+                    self.friends.append(friend)
+                }
+            }
+        }
+    }
+    
+    func getFriendPlaces(){
+        self.friendPlacesRef = Database.database().reference().child("users").child(self.selectedFriend.favId)
+
+        friendPlacesRef.observe(DataEventType.value){ (snapshot) in
+            self.friendItems = []
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                let savedPlace = SavedPlace(snapshot: snapshot){
+                    self.friendItems.append(savedPlace)
                 }
             }
         }

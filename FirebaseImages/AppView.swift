@@ -24,14 +24,17 @@ struct AppView: View {
                   Text("List")
             }
             
-            
             StoreView()
                 .tabItem{
                     Image(systemName: "location.circle")
                     Text("Save")
             }
             
-
+            FriendsView()
+                .tabItem{
+                    Image(systemName: "person.2")
+                    Text("Friends")
+            }
             
             SignInView()
                 .tabItem{

@@ -11,19 +11,29 @@ import SwiftUI
 struct SavedPlaceView: View {
     @EnvironmentObject var session: SessionStore
     var savedPlace: SavedPlace
+    var type: String
+    
+    func getType(){
+        print("Type: " + self.type)
+    }
     
     var body: some View {
             VStack {
                 MapView(latitude: savedPlace.latitude, longitude: savedPlace.longitude)
                     .frame(height: 200)
+                    .onAppear(perform: getType)
                 
                 if (savedPlace.containsPhoto == "True") {
-                    FirebaseImage(id: session.userId + "/" + savedPlace.id)
+                    if (type == "friend"){
+                        FirebaseImage(id: session.selectedFriend.favId + "/" + savedPlace.id)
+                    } else {
+                        FirebaseImage(id: session.userId + "/" + savedPlace.id)
+                    }
                 }
                 
-                if (savedPlace.containsPhoto == "true") {
-                    FirebaseImage(id: session.userId + "/" + savedPlace.id)
-                }
+//                if (savedPlace.containsPhoto == "True"){
+//                    FirebaseImage(id: session.selectedFriend.favId + "/" + savedPlace.id)
+//                }
                 
                 HStack {
                     Text("Name: ")
@@ -39,7 +49,7 @@ struct SavedPlaceView: View {
 
 struct SavedPlaceView_Previews: PreviewProvider {
     static var previews: some View {
-        SavedPlaceView(savedPlace: SavedPlace())
+        SavedPlaceView(savedPlace: SavedPlace(), type: "")
             .environmentObject(SessionStore())
     }
 }
