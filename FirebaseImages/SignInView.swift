@@ -45,18 +45,23 @@ struct SignInView : View {
                 }
             } else {
                 VStack {
-                    Text("Sign in to sync across devices, store images and much more!")
-                        .font(.largeTitle)
-                        .lineLimit(nil)
-                        .multilineTextAlignment(.center)
+                    Spacer()
                     TextField("Email Address", text: $email)
                     SecureField("Password", text: $password)
                     if (error) {
                         Text("password incorrect or no network connection")
                     }
+                    Spacer()
                     Button(action: signIn) {
                         Text("Sign in")
                     }
+                    
+                    Text("Sign in to sync across devices, store images and much more!")
+                        .font(.headline)
+                        .lineLimit(nil)
+                        .multilineTextAlignment(.center)
+                    Spacer()
+                    
                 }
             }
         }

@@ -14,6 +14,7 @@ extension StoreView {
     func getUser () {
         session.listen()
         self.showCaptureImageView = false
+        self.placename = ""
         self.comments = ""
         self.session.selectedPlace = ""
         self.image = nil
@@ -23,10 +24,11 @@ extension StoreView {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy:MM:dd HH:mm:ss:SS xxxxx"
         let time = formatter.string(from: Date())
-        var containsPhoto = "False"
         
-        if showCaptureImageView{
-            containsPhoto = "True"
+        print(containsPhoto)
+        
+        if (self.session.selectedPlace == ""){
+            self.session.selectedPlace = placename
         }
         
         let locationToSave : [String: String] = [
@@ -55,6 +57,8 @@ extension StoreView {
             }
         } else {
             print("save locally")
+            localStore.currentIndex = localStore.currentIndex + 1
+            localStore.addPlace(SavedPlace(placeName: self.session.selectedPlace, comments: comments, latitude: userLatitude, longitude: userLongitude, key: String(localStore.currentIndex), id: session.userId, timeStamp: time, containsPhoto: containsPhoto))
         }
     }
     

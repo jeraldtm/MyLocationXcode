@@ -30,6 +30,7 @@
 		74989FB423EAD4550067E60C /* SavedPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74989FB323EAD4550067E60C /* SavedPlace.swift */; };
 		776A3169B954D38FCD3DE2F2 /* libPods-FirebaseImagesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 893490444679A7215F9B090A /* libPods-FirebaseImagesTests.a */; };
 		C0BF4C5A24CE265E00855188 /* ListNearbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF4C5924CE265E00855188 /* ListNearbyView.swift */; };
+		C0BF609724DAD6D1002AE7A9 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF609624DAD6D1002AE7A9 /* LocalStore.swift */; };
 		E348114D56B629E3B6F3B9F8 /* libPods-FirebaseImages-FirebaseImagesUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 616E8224411475F121506FD6 /* libPods-FirebaseImages-FirebaseImagesUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		914DD7D818DF4A5F38AAC87E /* Pods-FirebaseImages-FirebaseImagesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseImages-FirebaseImagesUITests.release.xcconfig"; path = "Target Support Files/Pods-FirebaseImages-FirebaseImagesUITests/Pods-FirebaseImages-FirebaseImagesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9BE37F63A8A7975025CFAED6 /* Pods-FirebaseImagesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseImagesTests.release.xcconfig"; path = "Target Support Files/Pods-FirebaseImagesTests/Pods-FirebaseImagesTests.release.xcconfig"; sourceTree = "<group>"; };
 		C0BF4C5924CE265E00855188 /* ListNearbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNearbyView.swift; sourceTree = "<group>"; };
+		C0BF609624DAD6D1002AE7A9 /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 				7464CC7523E83F0A001A6C72 /* SignInView.swift */,
 				7464CC3F23E828F2001A6C72 /* ContentView.swift */,
 				7464CC7123E83B2B001A6C72 /* SessionStore.swift */,
+				C0BF609624DAD6D1002AE7A9 /* LocalStore.swift */,
 				7464CC4123E828F4001A6C72 /* Assets.xcassets */,
 				7464CC4623E828F4001A6C72 /* LaunchScreen.storyboard */,
 				7464CC4923E828F4001A6C72 /* Info.plist */,
@@ -458,6 +461,7 @@
 				7464CC7623E83F0A001A6C72 /* SignInView.swift in Sources */,
 				7464CC3C23E828F2001A6C72 /* AppDelegate.swift in Sources */,
 				7444439F23F036B7005A8073 /* Coordinator.swift in Sources */,
+				C0BF609724DAD6D1002AE7A9 /* LocalStore.swift in Sources */,
 				7437D53C23EF7CB100ACCF92 /* StoreView.swift in Sources */,
 				743C596A23EB9C3D0073D9A5 /* SavedPlaceView.swift in Sources */,
 				7444224B23EA56F500EE65B9 /* FirebaseImage.swift in Sources */,
@@ -636,7 +640,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"FirebaseImages/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Z65U658FX;
 				ENABLE_PREVIEWS = YES;
@@ -646,7 +650,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thow.FirebaseImages;
 				PRODUCT_NAME = "That-Place";
 				SWIFT_VERSION = 5.0;
@@ -660,7 +664,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"FirebaseImages/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Z65U658FX;
 				ENABLE_PREVIEWS = YES;
@@ -670,7 +674,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thow.FirebaseImages;
 				PRODUCT_NAME = "That-Place";
 				SWIFT_VERSION = 5.0;

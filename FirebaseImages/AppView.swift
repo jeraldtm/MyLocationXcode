@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AppView: View {
     @EnvironmentObject var session: SessionStore
-    
+    @EnvironmentObject var localStore: LocalStore
     func getUser () {
         session.listen()
     }

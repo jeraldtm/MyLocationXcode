@@ -12,11 +12,14 @@ import GooglePlaces
 
 struct StoreView: View {
     @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var localStore: LocalStore
+    @State var placename: String = ""
     @State var comments: String = ""
     @ObservedObject var locationManager = LocationManager()
     @State var image: Image? = nil
     @State var uiImage: UIImage? = nil
     @State var showCaptureImageView: Bool = false
+    @State var containsPhoto: String = "False"
     
     var userLatitude: String {
         return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
@@ -29,17 +32,21 @@ struct StoreView: View {
     var body: some View {
         NavigationView {
                 VStack {
-                    MapView(latitude: userLatitude, longitude: userLongitude)
+                    Form {
+                        if self.session.selectedPlace != ""{
+                            Text(self.session.selectedPlace)
+                        } else{
+                            TextField("Place Name", text: $placename)
+                        }
+                        TextField("Comments", text: $comments)
+                    }
                     
+                    MapView(latitude: userLatitude, longitude: userLongitude)
                     image?
                         .resizable()
                         .scaledToFit()
                         .cornerRadius(10.0)
                     
-                    Form {
-                        Text(self.session.selectedPlace)
-                        TextField("Comments", text: $comments)
-                    }
                     HStack {
                         Spacer()
                         NavigationLink(destination: ListNearbyView()){
@@ -49,7 +56,8 @@ struct StoreView: View {
                         if (session.session != nil) {
                             Spacer()
                             Button(action: {
-                              self.showCaptureImageView.toggle()
+                                self.showCaptureImageView.toggle();
+                                self.containsPhoto = "True";
                             }) {
                               Text("Choose photos")
                             }.padding(10.0)
