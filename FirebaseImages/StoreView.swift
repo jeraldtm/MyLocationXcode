@@ -77,6 +77,7 @@ struct StoreView: View {
                 } .navigationBarTitle(Text("Save Location"), displayMode: .inline)
             
         }.onAppear(perform: getUser)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

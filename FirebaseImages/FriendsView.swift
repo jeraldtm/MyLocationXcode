@@ -41,6 +41,7 @@ struct FriendsView: View {
                 .multilineTextAlignment(.center)
           }
         }.onAppear(perform: getUser)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
