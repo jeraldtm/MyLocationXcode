@@ -52,12 +52,14 @@ struct SignInView : View {
                     if (error) {
                         Text("password incorrect or no network connection")
                     }
-                    Spacer()
                     Button(action: signIn) {
                         Text("Sign in")
                     }
                     
-                    Text("Sign in to sync across devices, store images and much more!")
+                    Spacer()
+                    NavigationLink(destination: SignUpView()){
+                        Text("Sign up to sync across devices, store images and much more!")
+                    }
                         .font(.headline)
                         .lineLimit(nil)
                         .multilineTextAlignment(.center)

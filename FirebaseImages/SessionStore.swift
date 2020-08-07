@@ -15,7 +15,12 @@ class SessionStore: ObservableObject {
     @Published var items: [SavedPlace] = []
     @Published var userId: String = ""
     @Published var userName: String = ""
+    
     @Published var selectedPlace: String = ""
+    @Published var comments: String = ""
+    @Published var image: Image? = nil
+    @Published var uiImage: UIImage? = nil
+    @Published var showCaptureImageView: Bool = false
     
     @Published var friendItems: [SavedPlace] = []
     @Published var friends: [Friend] = []
@@ -28,8 +33,13 @@ class SessionStore: ObservableObject {
     
     var friendsRef: DatabaseReference!
     var friendPlacesRef: DatabaseReference!
-    
+        
     func listen () {
+        self.selectedPlace = ""
+        self.comments = ""
+        self.image = nil
+        self.uiImage = nil
+        
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
@@ -49,11 +59,17 @@ class SessionStore: ObservableObject {
                 self.getPlaces()
                 self.getName()
                 self.getFriends()
-                
             } else {
                 // if we don't have a user, set our session to nil
                 self.session = nil
             }
+        }
+    }
+    
+    func setUserName(){
+        if (session != nil){
+            self.listen()
+            self.nameref.child(self.userId).setValue(self.userName)
         }
     }
     

@@ -13,12 +13,9 @@ import GooglePlaces
 struct StoreView: View {
     @EnvironmentObject var session: SessionStore
     @EnvironmentObject var localStore: LocalStore
+    @Environment(\.presentationMode) var presentationMode:Binding<PresentationMode>
     @State var placename: String = ""
-    @State var comments: String = ""
     @ObservedObject var locationManager = LocationManager()
-    @State var image: Image? = nil
-    @State var uiImage: UIImage? = nil
-    @State var showCaptureImageView: Bool = false
     
     var userLatitude: String {
         return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
@@ -29,7 +26,6 @@ struct StoreView: View {
     }
     
     var body: some View {
-        NavigationView {
                 VStack {
                     Form {
                         if self.session.selectedPlace != ""{
@@ -37,11 +33,11 @@ struct StoreView: View {
                         } else{
                             TextField("Place Name", text: $placename)
                         }
-                        TextField("Comments", text: $comments)
+                        TextField("Comments", text: $session.comments)
                     }
                     
                     MapView(latitude: userLatitude, longitude: userLongitude)
-                    image?
+                    session.image?
                         .resizable()
                         .scaledToFit()
                         .cornerRadius(10.0)
@@ -55,7 +51,7 @@ struct StoreView: View {
                         if (session.session != nil) {
                             Spacer()
                             Button(action: {
-                              self.showCaptureImageView.toggle()
+                                self.session.showCaptureImageView.toggle()
                             }) {
                               Text("Choose photos")
                             }.padding(10.0)
@@ -63,21 +59,21 @@ struct StoreView: View {
                         
                         Spacer()
                         
-                        Button(action: saveLocation) {
+                        Button(action: {
+                            self.saveLocation()
+                            self.presentationMode.wrappedValue.dismiss()
+                            
+                        }) {
                             Text("Save")
                         }.padding(10.0)
                         
                         Spacer()
                     }
-                    if (showCaptureImageView) {
-                        CaptureImageView(isShown: $showCaptureImageView, image: $image, uiImage: $uiImage)
+                    if (self.session.showCaptureImageView) {
+                        CaptureImageView(isShown: $session.showCaptureImageView, image: $session.image, uiImage: $session.uiImage)
                             .frame(height: 300.0, alignment: .trailing)
                     }
-                    
                 } .navigationBarTitle(Text("Save Location"), displayMode: .inline)
-            
-        }.onAppear(perform: getUser)
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

@@ -11,13 +11,24 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var session: SessionStore
     @EnvironmentObject var localStore: LocalStore
+    
     func getUser () {
         session.listen()
+        session.setUserName()
+    }
+    
+    func clearStoreView(){
+        session.selectedPlace = ""
+        session.comments = ""
+        session.image = nil
+        session.uiImage = nil
+        session.showCaptureImageView = false
     }
     
     var body: some View {
         NavigationView {
             if (session.session != nil) {
+                VStack(alignment: .leading){
                 List {
                     Section{
                         ForEach(self.session.items.reversed()){ savedPlace in
@@ -25,26 +36,46 @@ struct ContentView: View {
                                 .environmentObject(self.session)
                         }
                     }
-                    
-                    Section{
-                        Button(action: session.signOut){
-                            Text("Sign out")
-                            }
-                    }
                 }
                 .navigationBarTitle(Text("Places"))
                 .listStyle(GroupedListStyle())
-
+                
+                NavigationLink(destination: StoreView()) { // (7)
+                  HStack {
+                    Image(systemName: "plus.circle.fill") //(8)
+                      .resizable()
+                      .frame(width: 20, height: 20) // (11)
+                    Text("New Place") // (9)
+                  }
+                }
+                .padding()
+                .accentColor(Color(UIColor.systemTeal)) // (13)
+                
+                }.onAppear(perform: clearStoreView)
           } else {
-                List{
-                    ForEach(self.localStore.items){ savedPlace in
-                        PlaceCell(savedPlace: savedPlace)
+                VStack(alignment: .leading){
+                    List{
+                        ForEach(self.localStore.items){ savedPlace in
+                            PlaceCell(savedPlace: savedPlace)
+                        }
                     }
-                }
-                .navigationBarTitle(Text("Places"))
-                .listStyle(GroupedListStyle())
-          }
+                    .navigationBarTitle(Text("Places"))
+                    .listStyle(GroupedListStyle())
+                    
+                    NavigationLink(destination: StoreView()) { // (7)
+                      HStack {
+                        Image(systemName: "plus.circle.fill") //(8)
+                          .resizable()
+                          .frame(width: 20, height: 20) // (11)
+                        Text("New Place") // (9)
+                      }
+                    }
+                    .padding()
+                    .accentColor(Color(UIColor.systemTeal)) // (13)
+                }.onAppear(perform: clearStoreView)
+            }
         }.onAppear(perform: getUser)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
@@ -69,7 +100,6 @@ struct PlaceCell: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-        .environmentObject(SessionStore())
     }
 }
 #endif

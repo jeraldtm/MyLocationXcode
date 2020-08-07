@@ -21,14 +21,14 @@ struct AppView: View {
             ContentView()
               .tabItem{
                   Image(systemName: "list.dash")
-                  Text("List")
+                  Text("Places")
             }
             
-            StoreView()
-                .tabItem{
-                    Image(systemName: "location.circle")
-                    Text("Save")
-            }
+//            StoreView()
+//                .tabItem{
+//                    Image(systemName: "location.circle")
+//                    Text("Save")
+//            }
             
             FriendsView()
                 .tabItem{

@@ -40,8 +40,12 @@ struct SavedPlaceView: View {
                     Text(savedPlace.placeName)
                 }
                 HStack {
-                    Text("comments:")
+                    Text("Comments:")
                     Text(savedPlace.comments)
+                }
+                
+                HStack {
+                    Text(savedPlace.timeStamp)
                 }
             }.navigationBarTitle(Text(savedPlace.placeName))
     }

@@ -29,6 +29,7 @@
 		7464CC7623E83F0A001A6C72 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7464CC7523E83F0A001A6C72 /* SignInView.swift */; };
 		74989FB423EAD4550067E60C /* SavedPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74989FB323EAD4550067E60C /* SavedPlace.swift */; };
 		776A3169B954D38FCD3DE2F2 /* libPods-FirebaseImagesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 893490444679A7215F9B090A /* libPods-FirebaseImagesTests.a */; };
+		C089CD0B24DD87BB00700781 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089CD0A24DD87BB00700781 /* SignUpView.swift */; };
 		C0BF4C5A24CE265E00855188 /* ListNearbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF4C5924CE265E00855188 /* ListNearbyView.swift */; };
 		C0BF609724DAD6D1002AE7A9 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF609624DAD6D1002AE7A9 /* LocalStore.swift */; };
 		C0BF609A24DC2D25002AE7A9 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF609924DC2D25002AE7A9 /* Friend.swift */; };
@@ -90,6 +91,7 @@
 		893490444679A7215F9B090A /* libPods-FirebaseImagesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FirebaseImagesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		914DD7D818DF4A5F38AAC87E /* Pods-FirebaseImages-FirebaseImagesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseImages-FirebaseImagesUITests.release.xcconfig"; path = "Target Support Files/Pods-FirebaseImages-FirebaseImagesUITests/Pods-FirebaseImages-FirebaseImagesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9BE37F63A8A7975025CFAED6 /* Pods-FirebaseImagesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseImagesTests.release.xcconfig"; path = "Target Support Files/Pods-FirebaseImagesTests/Pods-FirebaseImagesTests.release.xcconfig"; sourceTree = "<group>"; };
+		C089CD0A24DD87BB00700781 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C0BF4C5924CE265E00855188 /* ListNearbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNearbyView.swift; sourceTree = "<group>"; };
 		C0BF609624DAD6D1002AE7A9 /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
 		C0BF609824DC1B83002AE7A9 /* That-Place.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "That-Place.entitlements"; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				7464CC7123E83B2B001A6C72 /* SessionStore.swift */,
 				C0BF609624DAD6D1002AE7A9 /* LocalStore.swift */,
 				7464CC7523E83F0A001A6C72 /* SignInView.swift */,
+				C089CD0A24DD87BB00700781 /* SignUpView.swift */,
 				7464CC4123E828F4001A6C72 /* Assets.xcassets */,
 				7464CC4623E828F4001A6C72 /* LaunchScreen.storyboard */,
 				7464CC4923E828F4001A6C72 /* Info.plist */,
@@ -485,6 +488,7 @@
 				C0BF609C24DC3021002AE7A9 /* FriendsView.swift in Sources */,
 				7444439323F0179C005A8073 /* LocationManager.swift in Sources */,
 				743C596C23EBABD50073D9A5 /* MapView.swift in Sources */,
+				C089CD0B24DD87BB00700781 /* SignUpView.swift in Sources */,
 				C0BF609A24DC2D25002AE7A9 /* Friend.swift in Sources */,
 				7437D53A23EF7BB300ACCF92 /* AppView.swift in Sources */,
 				7464CC4023E828F2001A6C72 /* ContentView.swift in Sources */,
@@ -655,7 +659,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "FirebaseImages/That-Place.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FirebaseImages/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Z65U658FX;
 				ENABLE_PREVIEWS = YES;
@@ -665,7 +669,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thow.FirebaseImages;
 				PRODUCT_NAME = "That-Place";
 				SUPPORTS_MACCATALYST = NO;
@@ -681,7 +685,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "FirebaseImages/That-Place.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FirebaseImages/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Z65U658FX;
 				ENABLE_PREVIEWS = YES;
@@ -691,7 +695,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thow.FirebaseImages;
 				PRODUCT_NAME = "That-Place";
 				SUPPORTS_MACCATALYST = NO;

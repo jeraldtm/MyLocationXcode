@@ -11,21 +11,12 @@ import Firebase
 import GooglePlaces
 
 extension StoreView {
-    func getUser () {
-        session.listen()
-        self.showCaptureImageView = false
-        self.placename = ""
-        self.comments = ""
-        self.session.selectedPlace = ""
-        self.image = nil
-    }
-       
     func saveLocation(){
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy:MM:dd HH:mm:ss:SS xxxxx"
         let time = formatter.string(from: Date())
         
-        print(String(image != nil).capitalized)
+        print(String(self.session.image != nil).capitalized)
         
         if (self.session.selectedPlace == ""){
             self.session.selectedPlace = placename
@@ -33,8 +24,8 @@ extension StoreView {
         
         let locationToSave : [String: String] = [
             "locationName": self.session.selectedPlace,
-            "comments": comments,
-            "containsPhoto": String(image != nil).capitalized,
+            "comments": self.session.comments,
+            "containsPhoto": String(self.session.image != nil).capitalized,
             "latitude": userLatitude,
             "longitude": userLongitude,
             "time": time,
@@ -45,8 +36,8 @@ extension StoreView {
         
         if (session.session != nil) {
             session.ref.child(time).setValue(locationToSave)
-            if self.uiImage != nil{
-                uploadImage(self.uiImage!, at: self.session.storageRef.child(time)) { (downloadURL) in
+            if self.session.uiImage != nil{
+                uploadImage(self.session.uiImage!, at: self.session.storageRef.child(time)) { (downloadURL) in
                     guard let downloadURL = downloadURL else {
                         return
                     }
@@ -58,7 +49,7 @@ extension StoreView {
         } else {
             print("save locally")
             localStore.currentIndex = localStore.currentIndex + 1
-            localStore.addPlace(SavedPlace(placeName: self.session.selectedPlace, comments: comments, latitude: userLatitude, longitude: userLongitude, key: String(localStore.currentIndex), id: session.userId, timeStamp: time, containsPhoto: "False"))
+            localStore.addPlace(SavedPlace(placeName: self.session.selectedPlace, comments: self.session.comments, latitude: userLatitude, longitude: userLongitude, key: String(localStore.currentIndex), id: session.userId, timeStamp: time, containsPhoto: "False"))
         }
     }
     

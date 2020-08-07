@@ -24,12 +24,6 @@ struct FriendsView: View {
                                 .environmentObject(self.session)
                         }
                     }
-                    
-                    Section{
-                        Button(action: session.signOut){
-                            Text("Sign out")
-                            }
-                    }
                 }
                 .navigationBarTitle(Text("Friends"))
                 .listStyle(GroupedListStyle())
