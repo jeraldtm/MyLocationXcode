@@ -24,12 +24,6 @@ struct AppView: View {
                   Text("Places")
             }
             
-//            StoreView()
-//                .tabItem{
-//                    Image(systemName: "location.circle")
-//                    Text("Save")
-//            }
-            
             FriendsView()
                 .tabItem{
                     Image(systemName: "person.2")
@@ -48,6 +42,8 @@ struct AppView: View {
 
 struct AppView_Previews: PreviewProvider {
     static var previews: some View {
-        AppView()
+        let session: SessionStore = SessionStore()
+        let localStore: LocalStore = LocalStore()
+        return AppView().environmentObject(session).environmentObject(localStore)
     }
 }

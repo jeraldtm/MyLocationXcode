@@ -14,23 +14,42 @@ struct FriendsView: View {
         session.listen()
     }
     
+    func deleteFriend(at offsets: IndexSet){
+        for offset in offsets{
+            session.friendsRef.child(session.friends[offset].timeStamp).removeValue()
+        }
+    }
+    
     var body: some View {
         NavigationView {
             if (session.session != nil) {
+                VStack(alignment: .leading){
                 List {
                     Section{
                         ForEach(self.session.friends){ friend in
                             FriendCell(friend: friend)
                                 .environmentObject(self.session)
                         }
+                    .onDelete(perform: deleteFriend)
                     }
                 }
                 .navigationBarTitle(Text("Friends"))
                 .listStyle(GroupedListStyle())
-
+                
+                NavigationLink(destination: AddFriendView()) { // (7)
+                  HStack {
+                    Image(systemName: "plus.circle.fill") //(8)
+                      .resizable()
+                      .frame(width: 20, height: 20) // (11)
+                    Text("Add Friend") // (9)
+                  }
+                }
+                .padding()
+                .accentColor(Color(UIColor.systemTeal))
+                }
           } else {
                 Text("Sign in to share places with friends!")
-                .font(.headline)
+                    .font(.largeTitle)
                 .lineLimit(nil)
                 .multilineTextAlignment(.center)
           }
@@ -56,8 +75,9 @@ struct FriendCell: View {
 #if DEBUG
 struct FriendsView_Previews: PreviewProvider {
     static var previews: some View {
-        FriendsView()
-        .environmentObject(SessionStore())
+        let session: SessionStore = SessionStore()
+        return FriendsView().environmentObject(session)
+        .colorScheme(.dark)
     }
 }
 #endif

@@ -21,7 +21,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>This app needs permission to use your camera</string>
+	<string>This app needs permission to use your camera to take pictures of places you want to store.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>This app needs your location to store it</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

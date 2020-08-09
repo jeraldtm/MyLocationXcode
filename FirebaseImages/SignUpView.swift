@@ -30,7 +30,6 @@ struct SignUpView : View {
             } else {
                 self.email = ""
                 self.password = ""
-                self.session.userName = self.userName
             }
         }
     }
@@ -38,9 +37,23 @@ struct SignUpView : View {
     var body: some View {
         VStack {
             Spacer()
-            TextField("Name", text: $userName)
-            TextField("Email Address", text: $email)
-            TextField("Password", text: $password)
+            Text("Create Account")
+                .font(.largeTitle)
+                .multilineTextAlignment(.center)
+            Spacer()
+//            TextField("Name", text: $userName)
+            HStack {
+                Spacer()
+                TextField("Email Address", text: $email)
+                    .multilineTextAlignment(.center)
+                Spacer()
+            }
+            HStack {
+                Spacer()
+                TextField("Password", text: $password)
+                    .multilineTextAlignment(.center)
+                Spacer()
+            }
             if (error) {
                 Text("password incorrect or no network connection")
             }
@@ -50,7 +63,7 @@ struct SignUpView : View {
                 
                 self.presentationMode.wrappedValue.dismiss()
             }) {
-                Text("Sign Up")
+                Text("Sign up")
             }
                 .font(.headline)
                 .lineLimit(nil)
@@ -62,7 +75,7 @@ struct SignUpView : View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView()
+        return SignUpView()
         .environmentObject(SessionStore())
     }
 }

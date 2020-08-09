@@ -66,13 +66,6 @@ class SessionStore: ObservableObject {
         }
     }
     
-    func setUserName(){
-        if (session != nil){
-            self.listen()
-            self.nameref.child(self.userId).setValue(self.userName)
-        }
-    }
-    
     func signUp(
         email: String,
         password: String,

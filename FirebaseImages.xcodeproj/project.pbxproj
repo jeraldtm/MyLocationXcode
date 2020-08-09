@@ -35,6 +35,7 @@
 		C0BF609A24DC2D25002AE7A9 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF609924DC2D25002AE7A9 /* Friend.swift */; };
 		C0BF609C24DC3021002AE7A9 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF609B24DC3021002AE7A9 /* FriendsView.swift */; };
 		C0BF609E24DC350D002AE7A9 /* FriendContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF609D24DC350D002AE7A9 /* FriendContentView.swift */; };
+		C0C87FB524E04B3500C2D088 /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C87FB424E04B3500C2D088 /* AddFriendView.swift */; };
 		E348114D56B629E3B6F3B9F8 /* libPods-FirebaseImages-FirebaseImagesUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 616E8224411475F121506FD6 /* libPods-FirebaseImages-FirebaseImagesUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +99,7 @@
 		C0BF609924DC2D25002AE7A9 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		C0BF609B24DC3021002AE7A9 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		C0BF609D24DC350D002AE7A9 /* FriendContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendContentView.swift; sourceTree = "<group>"; };
+		C0C87FB424E04B3500C2D088 /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 				7444439A23F032CC005A8073 /* StoreView+handlers.swift */,
 				743C596B23EBABD50073D9A5 /* MapView.swift */,
 				74989FB323EAD4550067E60C /* SavedPlace.swift */,
+				C0C87FB424E04B3500C2D088 /* AddFriendView.swift */,
 				C0BF609924DC2D25002AE7A9 /* Friend.swift */,
 				C0BF609B24DC3021002AE7A9 /* FriendsView.swift */,
 				C0BF609D24DC350D002AE7A9 /* FriendContentView.swift */,
@@ -490,6 +493,7 @@
 				743C596C23EBABD50073D9A5 /* MapView.swift in Sources */,
 				C089CD0B24DD87BB00700781 /* SignUpView.swift in Sources */,
 				C0BF609A24DC2D25002AE7A9 /* Friend.swift in Sources */,
+				C0C87FB524E04B3500C2D088 /* AddFriendView.swift in Sources */,
 				7437D53A23EF7BB300ACCF92 /* AppView.swift in Sources */,
 				7464CC4023E828F2001A6C72 /* ContentView.swift in Sources */,
 			);
@@ -659,7 +663,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "FirebaseImages/That-Place.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"FirebaseImages/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Z65U658FX;
 				ENABLE_PREVIEWS = YES;
@@ -685,7 +689,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "FirebaseImages/That-Place.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"FirebaseImages/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Z65U658FX;
 				ENABLE_PREVIEWS = YES;

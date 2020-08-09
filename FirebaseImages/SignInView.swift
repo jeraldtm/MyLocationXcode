@@ -36,8 +36,8 @@ struct SignInView : View {
             if (session.session != nil) {
                 VStack{
                     Spacer()
-                    Text("Username: " + session.userName)
-                    Text("User Id: " + session.userId)
+                    Text("User Id:")
+                    Text(session.userId)
                     Spacer()
                     Button(action: session.signOut){
                         Text("Sign out")
@@ -47,24 +47,47 @@ struct SignInView : View {
             } else {
                 VStack {
                     Spacer()
-                    TextField("Email Address", text: $email)
-                    SecureField("Password", text: $password)
+                    Text("Sign in")
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
+                        TextField("Email Address", text: $email)
+                            .multilineTextAlignment(.center)
+                        Spacer()
+                    }
+                    HStack {
+                        Spacer()
+                        SecureField("Password", text: $password)
+                            .multilineTextAlignment(.center)
+                        Spacer()
+                    }
                     if (error) {
                         Text("password incorrect or no network connection")
                     }
-                    Button(action: signIn) {
-                        Text("Sign in")
+                    Spacer()
+                    HStack{
+//                        Button(action: signIn) {
+//                            Text("Set Name")
+//                        }
+                        
+                        Button(action: signIn) {
+                            Text("Sign in")
+                        }
                     }
                     
-                    Spacer()
-                    NavigationLink(destination: SignUpView()){
-                        Text("Sign up to sync across devices, store images and much more!")
+                    Group{
+                        Spacer()
+                        NavigationLink(destination: SignUpView()){
+                            Text("Sign up to sync across devices, store images and much more!")
+                        }
+                            .font(.headline)
+                            .lineLimit(nil)
+                            .multilineTextAlignment(.center)
+                        Spacer()
                     }
-                        .font(.headline)
-                        .lineLimit(nil)
-                        .multilineTextAlignment(.center)
-                    Spacer()
-                    
                 }
             }
         }.navigationViewStyle(StackNavigationViewStyle())

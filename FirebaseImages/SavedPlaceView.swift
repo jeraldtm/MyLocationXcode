@@ -53,7 +53,7 @@ struct SavedPlaceView: View {
 
 struct SavedPlaceView_Previews: PreviewProvider {
     static var previews: some View {
-        SavedPlaceView(savedPlace: SavedPlace(), type: "")
-            .environmentObject(SessionStore())
+        return SavedPlaceView(savedPlace: SavedPlace(), type: "")
+            .environmentObject(SessionStore()).colorScheme(.dark)
     }
 }

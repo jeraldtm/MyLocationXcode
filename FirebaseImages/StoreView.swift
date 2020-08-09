@@ -14,7 +14,7 @@ struct StoreView: View {
     @EnvironmentObject var session: SessionStore
     @EnvironmentObject var localStore: LocalStore
     @Environment(\.presentationMode) var presentationMode:Binding<PresentationMode>
-    @State var placename: String = ""
+    @State var placeName: String = ""
     @ObservedObject var locationManager = LocationManager()
     
     var userLatitude: String {
@@ -31,7 +31,7 @@ struct StoreView: View {
                         if self.session.selectedPlace != ""{
                             Text(self.session.selectedPlace)
                         } else{
-                            TextField("Place Name", text: $placename)
+                            TextField("Place Name", text: $placeName)
                         }
                         TextField("Comments", text: $session.comments)
                     }
@@ -77,12 +77,6 @@ struct StoreView: View {
     }
 }
 
-struct StoreView_Previews: PreviewProvider {
-    static var previews: some View {
-        StoreView()
-    }
-}
-
 struct CaptureImageView {
   @Binding var isShown: Bool
   @Binding var image: Image?
@@ -106,3 +100,13 @@ extension CaptureImageView: UIViewControllerRepresentable {
                                 context: UIViewControllerRepresentableContext<CaptureImageView>) {
     }
 }
+
+#if DEBUG
+struct StoreView_Previews: PreviewProvider {
+    static var previews: some View {
+        let session: SessionStore = SessionStore()
+        let localStore: LocalStore = LocalStore()
+        return StoreView().environmentObject(session).environmentObject(localStore).colorScheme(.dark)
+    }
+}
+#endif

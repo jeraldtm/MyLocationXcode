@@ -19,7 +19,7 @@ extension StoreView {
         print(String(self.session.image != nil).capitalized)
         
         if (self.session.selectedPlace == ""){
-            self.session.selectedPlace = placename
+            self.session.selectedPlace = placeName
         }
         
         let locationToSave : [String: String] = [

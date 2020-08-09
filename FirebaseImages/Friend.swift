@@ -17,14 +17,16 @@ struct Friend: Identifiable {
     let id: String
     let favId: String
     let favName: String
+    let timeStamp: String
     
-    init(favId: String = "", favName: String = "", key: String = "", id: String = ""){
+    init(favId: String = "", favName: String = "", key: String = "", id: String = "", timeStamp: String = ""){
         
         self.ref = nil
         self.key = key
         self.id = key
         self.favId = favId
         self.favName = favName
+        self.timeStamp = timeStamp
     }
     
     init?(snapshot: DataSnapshot){
@@ -34,6 +36,11 @@ struct Friend: Identifiable {
             else{
                 return nil
             }
+        
+        guard let timeStamp = value["timeStamp"] as? String
+            else{
+                return nil
+        }
         
         guard let favId = value["favId"] as? String
         else{
@@ -50,6 +57,7 @@ struct Friend: Identifiable {
         self.id = id
         self.favId = favId
         self.favName = favName
+        self.timeStamp = timeStamp
     }
     
     func toAnyObject() -> Any {
@@ -61,6 +69,6 @@ struct Friend: Identifiable {
 
 #if DEBUG
 let testFriend = [
-    Friend(favId: "testFavId", favName: "testFriend", key: "key")
+    Friend(favId: "testFavId", favName: "testFriend", key: "key", timeStamp: "testTime")
 ]
 #endif

@@ -14,7 +14,6 @@ struct ContentView: View {
     
     func getUser () {
         session.listen()
-        session.setUserName()
     }
     
     func clearStoreView(){
@@ -23,6 +22,23 @@ struct ContentView: View {
         session.image = nil
         session.uiImage = nil
         session.showCaptureImageView = false
+    }
+    
+    func deletePlace(at offsets: IndexSet){
+        for offset in offsets{
+            session.ref.child(session.items.reversed()[offset].timeStamp).removeValue()
+            session.storageRef.child(session.items.reversed()[offset].timeStamp).delete { error in
+              if let error = error {
+                print(error.localizedDescription)
+              } else {
+                print(self.session.items.reversed()[offset].timeStamp + " deleted")
+              }
+            }
+        }
+    }
+    
+    func deleteLocalPlace(at offsets: IndexSet){
+        localStore.items.remove(atOffsets: offsets)
     }
     
     var body: some View {
@@ -35,6 +51,7 @@ struct ContentView: View {
                             PlaceCell(savedPlace: savedPlace)
                                 .environmentObject(self.session)
                         }
+                    .onDelete(perform: deletePlace)
                     }
                 }
                 .navigationBarTitle(Text("Places"))
@@ -58,6 +75,7 @@ struct ContentView: View {
                         ForEach(self.localStore.items){ savedPlace in
                             PlaceCell(savedPlace: savedPlace)
                         }
+                        .onDelete(perform: deleteLocalPlace)
                     }
                     .navigationBarTitle(Text("Places"))
                     .listStyle(GroupedListStyle())
@@ -99,7 +117,9 @@ struct PlaceCell: View {
 #if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        let session: SessionStore = SessionStore()
+        let localStore: LocalStore = LocalStore()
+        return ContentView().environmentObject(session).environmentObject(localStore).colorScheme(.dark)
     }
 }
 #endif

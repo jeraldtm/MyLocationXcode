@@ -10,7 +10,7 @@ import SwiftUI
 
 struct FriendContentView: View {
     @EnvironmentObject var session: SessionStore
-    var selectedFriend: Friend
+    var selectedFriend: Friend = Friend()
     
     func getFriend () {
         session.selectedFriend = selectedFriend
@@ -53,8 +53,8 @@ struct FriendPlaceCell: View {
 #if DEBUG
 struct FriendContentView_Previews: PreviewProvider {
     static var previews: some View {
-        FriendContentView(selectedFriend: Friend())
-        .environmentObject(SessionStore())
+        let session: SessionStore = SessionStore()
+        return FriendContentView().environmentObject(session).colorScheme(.dark)
     }
 }
 #endif
