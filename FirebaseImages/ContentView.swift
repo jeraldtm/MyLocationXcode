@@ -69,6 +69,7 @@ struct ContentView: View {
                 .accentColor(Color(UIColor.systemTeal)) // (13)
                 
                 }.onAppear(perform: clearStoreView)
+                
           } else {
                 VStack(alignment: .leading){
                     List{
@@ -120,6 +121,7 @@ struct ContentView_Previews: PreviewProvider {
         let session: SessionStore = SessionStore()
         let localStore: LocalStore = LocalStore()
         return ContentView().environmentObject(session).environmentObject(localStore).colorScheme(.dark)
+            .environment(\.locale, Locale(identifier: "ar"))
     }
 }
 #endif

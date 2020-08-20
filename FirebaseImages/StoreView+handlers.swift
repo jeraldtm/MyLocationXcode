@@ -24,7 +24,7 @@ extension StoreView {
         
         let locationToSave : [String: String] = [
             "locationName": self.session.selectedPlace,
-            "comments": self.session.comments,
+            "comments": self.comments,
             "containsPhoto": String(self.session.image != nil).capitalized,
             "latitude": userLatitude,
             "longitude": userLongitude,
@@ -49,7 +49,7 @@ extension StoreView {
         } else {
             print("save locally")
             localStore.currentIndex = localStore.currentIndex + 1
-            localStore.addPlace(SavedPlace(placeName: self.session.selectedPlace, comments: self.session.comments, latitude: userLatitude, longitude: userLongitude, key: String(localStore.currentIndex), id: session.userId, timeStamp: time, containsPhoto: "False"))
+            localStore.addPlace(SavedPlace(placeName: self.session.selectedPlace, comments: self.comments, latitude: userLatitude, longitude: userLongitude, key: String(localStore.currentIndex), id: session.userId, timeStamp: time, containsPhoto: "False"))
         }
     }
     

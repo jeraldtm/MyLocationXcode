@@ -13,6 +13,7 @@ let placeholder = UIImage(systemName: "questionmark.circle")
 
 struct FirebaseImage : View {
     @EnvironmentObject var session: SessionStore
+    @State private var zoomed = false
     init(id: String) {
         self.imageLoader = Loader(id)
     }
@@ -26,8 +27,15 @@ struct FirebaseImage : View {
     var body: some View {
         Image(uiImage: image ?? placeholder!)
             .resizable()
-            .scaledToFit()
-            .cornerRadius(10)
+            .aspectRatio(contentMode: zoomed ? .fill : .fit)
+            .cornerRadius(20)
+            .onTapGesture {
+                withAnimation{
+                    self.zoomed.toggle()
+                }
+            }
+            .edgesIgnoringSafeArea(.all)
+        
     }
 }
 

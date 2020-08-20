@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SavedPlaceView: View {
     @EnvironmentObject var session: SessionStore
+    @State private var zoomed = false
     var savedPlace: SavedPlace
     var type: String
     
@@ -19,21 +20,17 @@ struct SavedPlaceView: View {
     
     var body: some View {
             VStack {
-                MapView(latitude: savedPlace.latitude, longitude: savedPlace.longitude)
-                    .frame(height: 200)
-                    .onAppear(perform: getType)
-                
                 if (savedPlace.containsPhoto == "True") {
+                    MapView(latitude: savedPlace.latitude, longitude: savedPlace.longitude)
+                    .onAppear(perform: getType)
                     if (type == "friend"){
                         FirebaseImage(id: session.selectedFriend.favId + "/" + savedPlace.id)
                     } else {
                         FirebaseImage(id: session.userId + "/" + savedPlace.id)
                     }
+                } else{
+                    MapView(latitude: savedPlace.latitude, longitude: savedPlace.longitude)
                 }
-                
-//                if (savedPlace.containsPhoto == "True"){
-//                    FirebaseImage(id: session.selectedFriend.favId + "/" + savedPlace.id)
-//                }
                 
                 HStack {
                     Text("Name: ")
@@ -53,7 +50,8 @@ struct SavedPlaceView: View {
 
 struct SavedPlaceView_Previews: PreviewProvider {
     static var previews: some View {
-        return SavedPlaceView(savedPlace: SavedPlace(), type: "")
-            .environmentObject(SessionStore()).colorScheme(.dark)
+        let session: SessionStore = SessionStore()
+        return SavedPlaceView(savedPlace: SavedPlace(placeName: "Test", comments: "Test", latitude: "1.0", longitude: "1.0", key: "1", id: "1", timeStamp: "2020:08:08", containsPhoto: "True"), type: "")
+            .environmentObject(session)
     }
 }

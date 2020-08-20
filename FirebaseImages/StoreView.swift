@@ -15,6 +15,7 @@ struct StoreView: View {
     @EnvironmentObject var localStore: LocalStore
     @Environment(\.presentationMode) var presentationMode:Binding<PresentationMode>
     @State var placeName: String = ""
+    @State var comments: String = ""
     @ObservedObject var locationManager = LocationManager()
     
     var userLatitude: String {
@@ -33,7 +34,7 @@ struct StoreView: View {
                         } else{
                             TextField("Place Name", text: $placeName)
                         }
-                        TextField("Comments", text: $session.comments)
+                        TextField("Comments", text: $comments)
                     }
                     
                     MapView(latitude: userLatitude, longitude: userLongitude)
