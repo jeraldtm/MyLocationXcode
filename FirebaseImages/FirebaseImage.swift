@@ -14,6 +14,10 @@ let placeholder = UIImage(systemName: "questionmark.circle")
 struct FirebaseImage : View {
     @EnvironmentObject var session: SessionStore
     @State private var zoomed = false
+    @State var currentPosition = CGSize(width:0, height:0)
+    @State var newPosition = CGSize(width:0, height:0)
+    @State var finalAmount:CGFloat = 1.0
+    @State var currentAmount:CGFloat = 0.0
     init(id: String) {
         self.imageLoader = Loader(id)
     }
@@ -31,11 +35,42 @@ struct FirebaseImage : View {
             .cornerRadius(20)
             .onTapGesture {
                 withAnimation{
-                    self.zoomed.toggle()
+//                    self.zoomed.toggle()
+                    if self.finalAmount <= 1.0 {
+                        self.finalAmount = 5.0
+                        self.currentAmount = 0.0
+                        self.currentPosition = CGSize(width:0, height:0)
+                        self.newPosition = CGSize(width:0, height:0)
+                    } else {
+                        self.finalAmount = 1.0
+                        self.currentAmount = 0.0
+                        self.currentPosition = CGSize(width:0, height:0)
+                        self.newPosition = CGSize(width:0, height:0)
+                    }
+                    
                 }
             }
-            .edgesIgnoringSafeArea(.all)
-        
+//            .edgesIgnoringSafeArea(.all)
+            .scaleEffect(self.finalAmount + self.currentAmount)
+            .offset(x: self.currentPosition.width, y: self.currentPosition.height)
+            .gesture(MagnificationGesture()
+                .onChanged { value in
+                     if self.finalAmount + value - 1 >= 1 {
+                              self.currentAmount = value - 1
+                          }
+                      }
+                      .onEnded { amount in
+                          self.finalAmount += self.currentAmount
+                      self.currentAmount = 0
+                }
+            .simultaneously(with: DragGesture()
+                .onChanged({ value in
+                    self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
+                })
+                .onEnded ({ value in
+                    self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
+                    self.newPosition = self.currentPosition
+            })))
     }
 }
 
@@ -58,8 +93,6 @@ final class Loader: ObservableObject {
         }
     }
 }
-
-
 
 struct FirebaseImage_Previews: PreviewProvider {
     static var previews: some View {
