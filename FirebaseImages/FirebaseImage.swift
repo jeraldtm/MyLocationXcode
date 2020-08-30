@@ -37,7 +37,7 @@ struct FirebaseImage : View {
                 withAnimation{
 //                    self.zoomed.toggle()
                     if self.finalAmount <= 1.0 {
-                        self.finalAmount = 5.0
+                        self.finalAmount = 3.5
                         self.currentAmount = 0.0
                         self.currentPosition = CGSize(width:0, height:0)
                         self.newPosition = CGSize(width:0, height:0)
