@@ -11,7 +11,7 @@ import SwiftUI
 struct AppView: View {
     @EnvironmentObject var session: SessionStore
     @EnvironmentObject var localStore: LocalStore
-    @ObservedObject var locationManager = LocationManager()
+//    @ObservedObject var locationManager = LocationManager()
     func getUser () {
         session.listen()
     }

@@ -16,14 +16,14 @@ struct StoreView: View {
     @Environment(\.presentationMode) var presentationMode:Binding<PresentationMode>
     @State var placeName: String = ""
     @State var comments: String = ""
-    @ObservedObject var locationManager = LocationManager()
+//    @ObservedObject var locationManager = LocationManager()
     
     var userLatitude: String {
-        return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
+        return "\(self.session.locationManager.lastLocation?.coordinate.latitude ?? 0)"
     }
     
     var userLongitude: String {
-        return "\(locationManager.lastLocation?.coordinate.longitude ?? 0)"
+        return "\(self.session.locationManager.lastLocation?.coordinate.longitude ?? 0)"
     }
     
     var body: some View {

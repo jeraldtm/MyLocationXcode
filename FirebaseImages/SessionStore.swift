@@ -25,6 +25,7 @@ class SessionStore: ObservableObject {
     @Published var friendItems: [SavedPlace] = []
     @Published var friends: [Friend] = []
     @Published var selectedFriend: Friend = Friend()
+    @Published var locationManager = LocationManager()
     
     var handle: AuthStateDidChangeListenerHandle?
     var ref: DatabaseReference!
