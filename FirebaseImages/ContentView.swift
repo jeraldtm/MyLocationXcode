@@ -11,7 +11,6 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var session: SessionStore
     @EnvironmentObject var localStore: LocalStore
-    
     func getUser () {
         session.listen()
     }
@@ -93,7 +92,8 @@ struct ContentView: View {
                     .accentColor(Color(UIColor.systemTeal)) // (13)
                 }.onAppear(perform: clearStoreView)
             }
-        }.onAppear(perform: getUser)
+        }
+        .onAppear(perform: getUser)
         .navigationViewStyle(StackNavigationViewStyle())
     }
 }

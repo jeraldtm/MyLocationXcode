@@ -12,7 +12,8 @@ import CoreLocation
 import Combine
 
 class LocationManager: NSObject, ObservableObject {
-    
+    private let locationManager = CLLocationManager()
+    let objectWillChange = PassthroughSubject<Void, Never>()
     override init() {
         super.init()
         self.locationManager.delegate = self
@@ -48,9 +49,7 @@ class LocationManager: NSObject, ObservableObject {
         }
     }
     
-    let objectWillChange = PassthroughSubject<Void, Never>()
-    
-    private let locationManager = CLLocationManager()
+
 }
 
 extension LocationManager: CLLocationManagerDelegate {

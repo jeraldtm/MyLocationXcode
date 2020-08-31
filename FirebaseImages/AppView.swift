@@ -11,6 +11,7 @@ import SwiftUI
 struct AppView: View {
     @EnvironmentObject var session: SessionStore
     @EnvironmentObject var localStore: LocalStore
+    @ObservedObject var locationManager = LocationManager()
     func getUser () {
         session.listen()
     }
@@ -35,8 +36,8 @@ struct AppView: View {
                     Image(systemName: "person")
                     Text("Account")
             }
-            
-        }.onAppear(perform: getUser)
+        }
+//        }.onAppear(perform: getUser)
     }
 }
 
