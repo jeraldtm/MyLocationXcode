@@ -29,48 +29,56 @@ struct FirebaseImage : View {
     }
 
     var body: some View {
-        Image(uiImage: image ?? placeholder!)
-            .resizable()
-            .aspectRatio(contentMode: zoomed ? .fill : .fit)
-            .cornerRadius(20)
-            .onTapGesture {
-                withAnimation{
-//                    self.zoomed.toggle()
-                    if self.finalAmount <= 1.0 {
-                        self.finalAmount = 3.5
-                        self.currentAmount = 0.0
-                        self.currentPosition = CGSize(width:0, height:0)
-                        self.newPosition = CGSize(width:0, height:0)
-                    } else {
-                        self.finalAmount = 1.0
-                        self.currentAmount = 0.0
-                        self.currentPosition = CGSize(width:0, height:0)
-                        self.newPosition = CGSize(width:0, height:0)
+        VStack{
+            if image != nil{
+                Image(uiImage: image!)
+                    .resizable()
+                    .aspectRatio(image!.size, contentMode: .fit)
+                    .cornerRadius(10)
+                .onTapGesture {
+                    withAnimation{
+                        if self.finalAmount <= 1.0 {
+                            self.finalAmount = 3.5
+                            self.currentAmount = 0.0
+                            self.currentPosition = CGSize(width:0, height:-100)
+                            self.newPosition = CGSize(width:0, height:0)
+                        } else {
+                            self.finalAmount = 1.0
+                            self.currentAmount = 0.0
+                            self.currentPosition = CGSize(width:0, height:0)
+                            self.newPosition = CGSize(width:0, height:0)
+                        }
+
                     }
-                    
                 }
-            }
-//            .edgesIgnoringSafeArea(.all)
-            .scaleEffect(self.finalAmount + self.currentAmount)
-            .offset(x: self.currentPosition.width, y: self.currentPosition.height)
-            .gesture(MagnificationGesture()
-                .onChanged { value in
-                     if self.finalAmount + value - 1 >= 1 {
-                              self.currentAmount = value - 1
+                .scaleEffect(self.finalAmount + self.currentAmount)
+                .offset(x: self.currentPosition.width, y: self.currentPosition.height)
+
+                .gesture(MagnificationGesture()
+                    .onChanged { value in
+                         if self.finalAmount + value - 1 >= 1 {
+                                  self.currentAmount = value - 1
+                              }
                           }
-                      }
-                      .onEnded { amount in
-                          self.finalAmount += self.currentAmount
-                      self.currentAmount = 0
-                }
-            .simultaneously(with: DragGesture()
-                .onChanged({ value in
-                    self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
-                })
-                .onEnded ({ value in
-                    self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
-                    self.newPosition = self.currentPosition
-            })))
+                          .onEnded { amount in
+                              self.finalAmount += self.currentAmount
+                          self.currentAmount = 0
+                    }
+                .simultaneously(with: DragGesture()
+                    .onChanged({ value in
+                        self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
+                    })
+                    .onEnded ({ value in
+                        self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
+                        self.newPosition = self.currentPosition
+                })))
+            } else {
+                Image(uiImage: placeholder!)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .cornerRadius(10)
+            }
+        }
     }
 }
 

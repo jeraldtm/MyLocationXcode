@@ -57,8 +57,9 @@ extension StoreView {
         guard let imageData = image.jpegData(compressionQuality: 0.1) else {
             return completion(nil)
         }
-
-        reference.putData(imageData, metadata: nil, completion: { (metadata, error) in
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        reference.putData(imageData, metadata: metadata, completion: { (metadata, error) in
             if let error = error {
                 assertionFailure(error.localizedDescription)
                 return completion(nil)

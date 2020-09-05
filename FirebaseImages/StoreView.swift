@@ -38,11 +38,12 @@ struct StoreView: View {
                     }
                     
                     MapView(latitude: userLatitude, longitude: userLongitude)
-                    session.image?
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(10.0)
-                    
+                    if self.session.uiImage != nil{
+                        self.session.image?
+                            .resizable()
+                            .aspectRatio(self.session.uiImage!.size, contentMode: .fit)
+                            .cornerRadius(10.0)
+                    }
                     HStack {
                         Spacer()
                         NavigationLink(destination: ListNearbyView()){

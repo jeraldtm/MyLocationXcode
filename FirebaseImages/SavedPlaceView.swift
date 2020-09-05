@@ -22,6 +22,7 @@ struct SavedPlaceView: View {
             VStack {
                 if (savedPlace.containsPhoto == "True") {
                     MapView(latitude: savedPlace.latitude, longitude: savedPlace.longitude)
+                    .frame(height: 200)
                     .onAppear(perform: getType)
                     if (type == "friend"){
                         FirebaseImage(id: session.selectedFriend.favId + "/" + savedPlace.id)

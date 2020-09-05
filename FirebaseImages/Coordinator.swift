@@ -20,9 +20,11 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
                 didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
      guard let unwrapImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
      imageInCoordinator = Image(uiImage: unwrapImage)
+    
     uiImage = unwrapImage
      isCoordinatorShown = false
   }
+    
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
      isCoordinatorShown = false
   }
