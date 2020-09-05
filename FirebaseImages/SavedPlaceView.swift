@@ -20,32 +20,32 @@ struct SavedPlaceView: View {
     
     var body: some View {
             VStack {
-                if (savedPlace.containsPhoto == "True") {
-                    MapView(latitude: savedPlace.latitude, longitude: savedPlace.longitude)
-                    .frame(height: 200)
-                    .onAppear(perform: getType)
-                    if (type == "friend"){
-                        FirebaseImage(id: session.selectedFriend.favId + "/" + savedPlace.id)
-                    } else {
-                        FirebaseImage(id: session.userId + "/" + savedPlace.id)
-                    }
+                if (self.savedPlace.containsPhoto == "True") {
+                    MapView(latitude: self.savedPlace.latitude, longitude: self.savedPlace.longitude)
+                        .onAppear(perform: self.getType)
+                
+                    if (self.type == "friend"){
+                        FirebaseImage(id: self.session.selectedFriend.favId + "/" + self.savedPlace.id)
+                } else {
+                        FirebaseImage(id: self.session.userId + "/" + self.savedPlace.id)
+                }
                 } else{
-                    MapView(latitude: savedPlace.latitude, longitude: savedPlace.longitude)
+                        MapView(latitude: self.savedPlace.latitude, longitude: self.savedPlace.longitude)
                 }
                 
                 HStack {
                     Text("Name: ")
-                    Text(savedPlace.placeName)
+                    Text(self.savedPlace.placeName)
                 }
                 HStack {
                     Text("Comments:")
-                    Text(savedPlace.comments)
+                    Text(self.savedPlace.comments)
                 }
                 
                 HStack {
-                    Text(savedPlace.timeStamp)
+                    Text(self.savedPlace.timeStamp)
                 }
-            }.navigationBarTitle(Text(savedPlace.placeName))
+        }.navigationBarTitle(Text(savedPlace.placeName))
     }
 }
 
