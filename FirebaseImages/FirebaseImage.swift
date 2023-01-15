@@ -25,7 +25,7 @@ struct FirebaseImage : View {
     @ObservedObject private var imageLoader : Loader
 
     var image: UIImage? {
-        imageLoader.data.flatMap(UIImage.init)
+        imageLoader.imageData.flatMap(UIImage.init)
     }
 
     var body: some View {
@@ -73,32 +73,64 @@ struct FirebaseImage : View {
                         self.newPosition = self.currentPosition
                 })))
             } else {
-                Image(uiImage: placeholder!)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .cornerRadius(10)
+                if #available(iOS 14.0, *) {
+                    ProgressView()
+                } else {
+                    Image(uiImage: placeholder!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(10)
+                }
             }
         }
     }
 }
 
 final class Loader: ObservableObject {
-    @Published var data: Data? = nil
-    
+    @Published var imageData: Data? = nil
+    @Published var imageURL: URL? = nil
     init(_ id: String){
         // the path to the image
         let url = "users/\(id)"
         let storage = Storage.storage()
         let ref = storage.reference().child(url)
-        ref.getData(maxSize: 15 * 1024 * 1024) { data, error in
-            if let error = error {
-                print("\(error)")
-            }
-
-            DispatchQueue.main.async {
-                self.data = data
-            }
+        
+        ref.downloadURL { url, error in
+          if let error = error {
+              print("\(error)")
+          } else {
+              DispatchQueue.main.async{
+                  self.imageURL = url
+                  print(url ?? "test" as Any)
+                  let cache = URLCache.shared
+                  let request = URLRequest(url: self.imageURL!, cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 60.0)
+                  if let data = cache.cachedResponse(for: request)?.data {
+                              print("got image from cache")
+                              self.imageData = data
+                  } else {
+                      URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                          if let data = data, let response = response {
+                          let cachedData = CachedURLResponse(response: response, data: data)
+                                              cache.storeCachedResponse(cachedData, for: request)
+                              DispatchQueue.main.async {
+                                  print("downloaded from internet")
+                                  self.imageData = data
+                              }
+                          }
+                      }).resume()
+                  }
+              }
+          }
         }
+//        ref.getData(maxSize: 15 * 1024 * 1024) { data, error in
+//            if let error = error {
+//                print("\(error)")
+//            } else {
+//                DispatchQueue.main.async {
+//                    self.imageData = data
+//                }
+//            }
+//        }
     }
 }
 
