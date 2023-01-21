@@ -73,7 +73,7 @@ struct StoreView: View {
                     }
                     if (self.session.showCaptureImageView) {
                         CaptureImageView(isShown: $session.showCaptureImageView, image: $session.image, uiImage: $session.uiImage)
-                            .frame(width: 200.0, height: 400.0, alignment: .trailing)
+                            .frame(width: 300.0, height: 450.0, alignment: .trailing)
                     }
                 } .navigationBarTitle(Text("Save Location"), displayMode: .inline)
     }

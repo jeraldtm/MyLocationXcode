@@ -110,8 +110,8 @@ final class Loader: ObservableObject {
                   } else {
                       URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
                           if let data = data, let response = response {
-                          let cachedData = CachedURLResponse(response: response, data: data)
-                                              cache.storeCachedResponse(cachedData, for: request)
+                              let cachedData = CachedURLResponse(response: response, data: data)
+                              cache.storeCachedResponse(cachedData, for: request)
                               DispatchQueue.main.async {
                                   print("downloaded from internet")
                                   self.imageData = data
